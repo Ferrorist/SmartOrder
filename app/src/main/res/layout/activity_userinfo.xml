@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/tv_name"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="TextView"
@@ -19,7 +19,7 @@
 
     <TextView
         android:id="@+id/tv_Num"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="TextView"
@@ -31,7 +31,7 @@
 
     <TextView
         android:id="@+id/tv_Email"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="TextView"
@@ -84,7 +84,7 @@
 
     <TextView
         android:id="@+id/tv_id"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -98,7 +98,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="64dp"
         android:text="비밀번호"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/textview"
@@ -106,16 +106,15 @@
 
     <Button
         android:id="@+id/btn_emailch"
-        android:layout_width="60dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="변경하기"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_Email"
-        app:layout_constraintStart_toEndOf="@+id/tv_Email"
-        app:layout_constraintTop_toTopOf="@+id/tv_Email" />
+        app:layout_constraintStart_toStartOf="@+id/tv_Email"
+        tools:layout_editor_absoluteY="375dp" />
 
     <Button
         android:id="@+id/btn_passch"
-        android:layout_width="60dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
