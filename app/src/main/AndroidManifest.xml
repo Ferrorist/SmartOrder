@@ -22,6 +22,10 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity"/>
         <activity android:name=".FindResultPage"/>
+        <activity android:name=".Userinfo"/>
+        <activity android:name=".ChangeEmailActivity"/>
+        <activity android:name=".ChangePassActivity"/>
+        <activity android:name=".DeleteIdActivity"/>
         <activity android:name=".FindIdActivity">
         </activity>
     </application>

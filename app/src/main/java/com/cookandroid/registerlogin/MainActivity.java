@@ -10,22 +10,15 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView tv_id, tv_pass,tv_name,tv_Num,tv_Email;
-    private Button btn_logout;
+    private TextView et_test;
+    private Button btn_logout,btn_info;
 
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tv_id = findViewById(R.id. tv_id);
-        tv_pass = findViewById(R.id.tv_pass);
-        tv_name = findViewById(R.id.tv_name);
-        tv_Num = findViewById(R.id.tv_Num);
-        tv_Email = findViewById(R.id.tv_Email);
-
          btn_logout = findViewById(R.id.btn_logout);
-
          btn_logout.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
@@ -33,6 +26,28 @@ public class MainActivity extends AppCompatActivity {
                  startActivity(intent);
              }
          });
+
+         btn_info = findViewById(R.id.btn_info);
+         btn_info.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 Intent intent = getIntent();
+                 String userID = intent.getStringExtra("userID");
+                 String userPass = intent.getStringExtra("userPass");
+                 String userName = intent.getStringExtra("userName");
+                 String userEmail = intent.getStringExtra("userEmail");
+                 String userNum = intent.getStringExtra("userNum");
+
+                 Intent intent1 = new Intent(MainActivity.this, Userinfo.class);
+                 intent1.putExtra("userID",userID);
+                 intent1.putExtra("userPass",userPass);
+                 intent1.putExtra("userName",userName);
+                 intent1.putExtra("userNum",userNum);
+                 intent1.putExtra("userEmail",userEmail);
+                 startActivity(intent1);
+             }
+         });
+
          Intent intent = getIntent();
          String userID = intent.getStringExtra("userID");
          String userPass = intent.getStringExtra("userPass");
@@ -44,11 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        tv_id.setText(userID);
-        tv_pass.setText(userPass);
-        tv_name.setText(userName);
-        tv_Num.setText(userNum);
-        tv_Email.setText(userEmail);
+
+
 
 
 

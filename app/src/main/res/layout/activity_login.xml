@@ -20,7 +20,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <EditText
-        android:id="@+id/et_pass"
+        android:id="@+id/et_pass1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -38,9 +38,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="로그인"
-        app:layout_constraintEnd_toEndOf="@+id/et_pass"
-        app:layout_constraintStart_toStartOf="@+id/et_pass"
-        app:layout_constraintTop_toBottomOf="@+id/et_pass" />
+        app:layout_constraintEnd_toEndOf="@+id/et_pass1"
+        app:layout_constraintStart_toStartOf="@+id/et_pass1"
+        app:layout_constraintTop_toBottomOf="@+id/et_pass1" />
 
     <Button
         android:id="@+id/btn_register"

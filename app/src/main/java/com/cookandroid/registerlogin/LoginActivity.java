@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         et_id = findViewById(R.id.et_id);
-        et_pass = findViewById(R.id.et_pass);
+        et_pass = findViewById(R.id.et_pass1);
         btn_login = findViewById(R.id.btn_login);
         btn_register = findViewById(R.id.btn_register);
         btn_findid = findViewById(R.id.btn_findid);
@@ -78,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                               intent.putExtra("userName",userName);
                               intent.putExtra("userNum",userNum);
                               intent.putExtra("userEmail",userEmail);
+
                               startActivity(intent);
                           }else{ //실패한 경우
                               Toast.makeText(getApplicationContext(),"로그인에 실패하였습니다.",Toast.LENGTH_SHORT).show();
