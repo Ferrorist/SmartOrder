@@ -70,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                               String userName = jasonObject.getString("userName");
                               String userNum = jasonObject.getString("userNum");
                               String userEmail = jasonObject.getString("userEmail");
+                              String userTicket = jasonObject.getString("userTicket");
 
                               Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
                               Intent intent = new Intent(LoginActivity.this, MainActivity.class);
@@ -78,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                               intent.putExtra("userName",userName);
                               intent.putExtra("userNum",userNum);
                               intent.putExtra("userEmail",userEmail);
+                              intent.putExtra("userTicket",userTicket);
 
                               startActivity(intent);
                           }else{ //실패한 경우

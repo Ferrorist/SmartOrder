@@ -20,7 +20,7 @@ import org.json.JSONObject;
 public class FindIdActivity extends AppCompatActivity {
 
     private TextView et_findname, et_findnum,et_findemail;
-    private Button btn_findid;
+    private Button btn_findid,btn_return;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +79,19 @@ public class FindIdActivity extends AppCompatActivity {
                     }
                 }
             });
+
+
+        btn_return = findViewById(R.id.btn_return);
+        btn_return.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent1 = new Intent(FindIdActivity.this, LoginActivity.class);
+                startActivity(intent1);
+            }
+        });
+
+
 
 
 

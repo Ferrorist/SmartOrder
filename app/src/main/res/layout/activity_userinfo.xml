@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Userinfo">
 
     <TextView
@@ -94,48 +95,24 @@
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btn_emailch"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:text="비밀번호"
-        android:textSize="24sp"
+        android:layout_marginTop="32dp"
+        android:text="이메일 변경하기"
         app:layout_constraintStart_toStartOf="@+id/textview"
         app:layout_constraintTop_toBottomOf="@+id/textview" />
 
     <Button
-        android:id="@+id/btn_emailch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="변경하기"
-        app:layout_constraintStart_toStartOf="@+id/tv_Email"
-        app:layout_constraintTop_toBottomOf="@+id/tv_Email" />
-
-    <Button
         android:id="@+id/btn_passch"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:text="변경하기"
-        app:layout_constraintBottom_toBottomOf="@+id/textView2"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="@+id/textView2" />
-
-    <Button
-        android:id="@+id/btn_change"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="100dp"
-        android:text="메인으로"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginTop="16dp"
+        android:text="비밀번호 변경하기"
+        app:layout_constraintEnd_toEndOf="@+id/btn_emailch"
+        app:layout_constraintStart_toStartOf="@+id/btn_emailch"
+        app:layout_constraintTop_toBottomOf="@+id/btn_emailch" />
 
     <TextView
         android:id="@+id/tv_title"
@@ -152,16 +129,12 @@
 
     <Button
         android:id="@+id/btn_deleteID"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
         android:text="회원탈퇴"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_title"
-        app:layout_constraintTop_toTopOf="@+id/tv_title" />
+        app:layout_constraintEnd_toEndOf="@+id/btn_passch"
+        app:layout_constraintStart_toStartOf="@+id/btn_passch"
+        app:layout_constraintTop_toBottomOf="@+id/btn_passch" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

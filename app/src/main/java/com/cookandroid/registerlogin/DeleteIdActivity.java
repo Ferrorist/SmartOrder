@@ -49,6 +49,7 @@ public class DeleteIdActivity extends AppCompatActivity {
                 String userName = intent.getStringExtra("userName");
                 String userNum = intent.getStringExtra("userNum");
                 String userEmail = intent.getStringExtra("userEmail");
+                String userTicket = intent.getStringExtra("userTicket");
                 String pass1 = et_pass1.getText().toString();
                 String pass2 = et_pass2.getText().toString();
                 if (pass1.equals("")||pass2.equals("")) {
@@ -69,6 +70,7 @@ public class DeleteIdActivity extends AppCompatActivity {
                                 String userName = intent.getStringExtra("userName");
                                 String userNum = intent.getStringExtra("userNum");
                                 String userEmail = intent.getStringExtra("userEmail");
+                                String userTicket = intent.getStringExtra("userTicket");
                                 String pass1 = et_pass1.getText().toString();
                                 String pass2 = et_pass2.getText().toString();
 
@@ -99,7 +101,7 @@ public class DeleteIdActivity extends AppCompatActivity {
                                                             if (success) {
                                                                 AlertDialog.Builder builder = new AlertDialog.Builder(DeleteIdActivity.this);
 
-                                                                validate = true; //검증 완료
+                                                                validate = true;
 
                                                                 Intent intent = getIntent();
                                                                 String userID = intent.getStringExtra("userID");
@@ -130,7 +132,7 @@ public class DeleteIdActivity extends AppCompatActivity {
                                                         }
                                                     }
                                                 };
-                                                DeleteIdRequest deleteid = new DeleteIdRequest(userID,userName, responseListener);
+                                                DeleteIdRequest deleteid = new DeleteIdRequest(userID, responseListener);
                                                 RequestQueue queue = Volley.newRequestQueue(DeleteIdActivity.this);
                                                 queue.add(deleteid);
 
@@ -147,6 +149,7 @@ public class DeleteIdActivity extends AppCompatActivity {
                                                 String userName = intent.getStringExtra("userName");
                                                 String userEmail = intent.getStringExtra("userEmail");
                                                 String userNum = intent.getStringExtra("userNum");
+                                                String userTicket = intent.getStringExtra("userTicket");
 
                                                 Intent intent1 = new Intent(DeleteIdActivity.this, DeleteIdActivity.class);
                                                 intent1.putExtra("userID",userID);
@@ -154,6 +157,7 @@ public class DeleteIdActivity extends AppCompatActivity {
                                                 intent1.putExtra("userName",userName);
                                                 intent1.putExtra("userNum",userNum);
                                                 intent1.putExtra("userEmail",userEmail);
+                                                intent1.putExtra("userTicket", userTicket);
                                                 startActivity(intent1);
                                             }
                                         });
@@ -200,6 +204,7 @@ public class DeleteIdActivity extends AppCompatActivity {
                 String userName = intent.getStringExtra("userName");
                 String userEmail = intent.getStringExtra("userEmail");
                 String userNum = intent.getStringExtra("userNum");
+                String userTicket = intent.getStringExtra("userTicket");
 
                 Intent intent1 = new Intent(DeleteIdActivity.this, MainActivity.class);
                 intent1.putExtra("userID",userID);
@@ -207,6 +212,7 @@ public class DeleteIdActivity extends AppCompatActivity {
                 intent1.putExtra("userName",userName);
                 intent1.putExtra("userNum",userNum);
                 intent1.putExtra("userEmail",userEmail);
+                intent1.putExtra("userTicket", userTicket);
                 startActivity(intent1);
             }
         });
@@ -220,6 +226,7 @@ public class DeleteIdActivity extends AppCompatActivity {
         String userName = intent.getStringExtra("userName");
         String userEmail = intent.getStringExtra("userEmail");
         String userNum = intent.getStringExtra("userNum");
+        String userTicket = intent.getStringExtra("userTicket");
 
 
 

@@ -76,6 +76,7 @@ public class ChangeEmailActivity extends AppCompatActivity {
                                     String userName = intent.getStringExtra("userName");
                                     String userEmail = et_new.getText().toString();
                                     String userNum = intent.getStringExtra("userNum");
+                                    String userTicket = intent.getStringExtra("userTicket");
 
 
                                     new Handler().postDelayed(new Runnable() {
@@ -87,13 +88,15 @@ public class ChangeEmailActivity extends AppCompatActivity {
                                             String userName = intent.getStringExtra("userName");
                                             String userEmail = et_new.getText().toString();
                                             String userNum = intent.getStringExtra("userNum");
+                                            String userTicket = intent.getStringExtra("userTicket");
 
-                                            Intent intent1 = new Intent(ChangeEmailActivity.this, Userinfo.class);
+                                            Intent intent1 = new Intent(ChangeEmailActivity.this, MainActivity.class);
                                             intent1.putExtra("userID",userID);
                                             intent1.putExtra("userPass",userPass);
                                             intent1.putExtra("userName",userName);
                                             intent1.putExtra("userNum",userNum);
                                             intent1.putExtra("userEmail",userEmail);
+                                            intent1.putExtra("userTicket", userTicket);
                                             startActivity(intent1);
                                         }
                                     }, 1500);
@@ -130,6 +133,7 @@ public class ChangeEmailActivity extends AppCompatActivity {
                 String userName = intent.getStringExtra("userName");
                 String userEmail = intent.getStringExtra("userEmail");
                 String userNum = intent.getStringExtra("userNum");
+                String userTicket = intent.getStringExtra("userTicket");
 
                 Intent intent1 = new Intent(ChangeEmailActivity.this, MainActivity.class);
                 intent1.putExtra("userID",userID);
@@ -137,6 +141,7 @@ public class ChangeEmailActivity extends AppCompatActivity {
                 intent1.putExtra("userName",userName);
                 intent1.putExtra("userNum",userNum);
                 intent1.putExtra("userEmail",userEmail);
+                intent1.putExtra("userTicket", userTicket);
                 startActivity(intent1);
             }
         });
@@ -199,6 +204,7 @@ public class ChangeEmailActivity extends AppCompatActivity {
         String userName = intent.getStringExtra("userName");
         String userEmail = intent.getStringExtra("userEmail");
         String userNum = intent.getStringExtra("userNum");
+        String userTicket = intent.getStringExtra("userTicket");
 
         tv_email.setText(userEmail);
 

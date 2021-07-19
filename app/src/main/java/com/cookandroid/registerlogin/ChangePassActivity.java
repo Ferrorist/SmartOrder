@@ -49,6 +49,7 @@ public class ChangePassActivity extends AppCompatActivity {
                 String userName = intent.getStringExtra("userName");
                 String userNum = intent.getStringExtra("userNum");
                 String userEmail = intent.getStringExtra("userEmail");
+                String userTicket = intent.getStringExtra("userTicket");
                 String ctpass = et_ctpass.getText().toString();
                 String newpass1 = et_newpass1.getText().toString();
                 String newpass2 = et_newpass2.getText().toString();
@@ -75,6 +76,7 @@ public class ChangePassActivity extends AppCompatActivity {
                                 String userName = intent.getStringExtra("userName");
                                 String userNum = intent.getStringExtra("userNum");
                                 String userEmail = intent.getStringExtra("userEmail");
+                                String userTicket = intent.getStringExtra("userTicket");
                                 String ctpass = et_ctpass.getText().toString();
                                 String newpass1 = et_newpass1.getText().toString();
                                 String newpass2 = et_newpass2.getText().toString();
@@ -99,6 +101,7 @@ public class ChangePassActivity extends AppCompatActivity {
                                                         String userName = intent.getStringExtra("userName");
                                                         String userEmail = intent.getStringExtra("userEmail");
                                                         String userNum = intent.getStringExtra("userNum");
+                                                        String userTicket = intent.getStringExtra("userTicket");
 
 
                                                         new Handler().postDelayed(new Runnable() {
@@ -110,13 +113,15 @@ public class ChangePassActivity extends AppCompatActivity {
                                                                 String userName = intent.getStringExtra("userName");
                                                                 String userEmail = intent.getStringExtra("userEmail");
                                                                 String userNum = intent.getStringExtra("userNum");
+                                                                String userTicket = intent.getStringExtra("userTicket");
 
-                                                                Intent intent1 = new Intent(ChangePassActivity.this, Userinfo.class);
+                                                                Intent intent1 = new Intent(ChangePassActivity.this, MainActivity.class);
                                                                 intent1.putExtra("userID",userID);
                                                                 intent1.putExtra("userPass",userPass);
                                                                 intent1.putExtra("userName",userName);
                                                                 intent1.putExtra("userNum",userNum);
                                                                 intent1.putExtra("userEmail",userEmail);
+                                                                intent1.putExtra("userTicket", userTicket);
                                                                 startActivity(intent1);
                                                             }
                                                         }, 1500);
@@ -179,6 +184,7 @@ public class ChangePassActivity extends AppCompatActivity {
                 String userName = intent.getStringExtra("userName");
                 String userEmail = intent.getStringExtra("userEmail");
                 String userNum = intent.getStringExtra("userNum");
+                String userTicket = intent.getStringExtra("userTicket");
 
                 Intent intent1 = new Intent(ChangePassActivity.this, MainActivity.class);
                 intent1.putExtra("userID",userID);
@@ -186,6 +192,7 @@ public class ChangePassActivity extends AppCompatActivity {
                 intent1.putExtra("userName",userName);
                 intent1.putExtra("userNum",userNum);
                 intent1.putExtra("userEmail",userEmail);
+                intent1.putExtra("userTicket", userTicket);
                 startActivity(intent1);
             }
         });
@@ -199,6 +206,7 @@ public class ChangePassActivity extends AppCompatActivity {
         String userName = intent.getStringExtra("userName");
         String userEmail = intent.getStringExtra("userEmail");
         String userNum = intent.getStringExtra("userNum");
+        String userTicket = intent.getStringExtra("userTicket");
 
 
 

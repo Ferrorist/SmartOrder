@@ -20,7 +20,7 @@ import org.json.JSONObject;
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText et_id, et_pass,et_name,et_num,et_pass2,et_email;
-    private Button btn_register,btn_ValidateID,btn_ValidateEmail;
+    private Button btn_register,btn_ValidateID,btn_ValidateEmail,btn_return;
     private boolean validate = false;
     private boolean validate2 = false;
     private AlertDialog dialog;
@@ -155,6 +155,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String userName = et_name.getText().toString();
                 String userEmail = et_email.getText().toString();
                 String userNum = et_num.getText().toString();
+                String userTicket = "null";
 
                 if (userName.equals("") || userNum.equals("") || userEmail.equals("") || userID.equals("") || userPass.equals("") || userPass2.equals("")) {
                     Toast.makeText(getApplicationContext(), "값을 입력해 주세요", Toast.LENGTH_SHORT).show();
@@ -184,7 +185,7 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         };
                         //서버로 Volley를 이용해서 요청을 함
-                        RegisterRequest registerRequest = new RegisterRequest(userID, userPass, userName, userEmail,Integer.parseInt(userNum), responseListener);
+                        RegisterRequest registerRequest = new RegisterRequest(userID, userPass, userName, userEmail, userTicket, Integer.parseInt(userNum), responseListener);
                         RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                         queue.add(registerRequest);
                     } else {
@@ -198,6 +199,16 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
 
+            }
+        });
+
+        btn_return = findViewById(R.id.btn_return);
+        btn_return.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent1 = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intent1);
             }
         });
 
