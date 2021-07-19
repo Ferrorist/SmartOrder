@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTransaction ft;
     private Frag1 frag1;
     private Frag3 frag3;
-
+    private action_web_freg frag4;
 
      @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,20 +38,22 @@ public class MainActivity extends AppCompatActivity {
              public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                  switch(menuItem.getItemId()){
                      case R.id.action_home:
-                     setFrag(0);
-                     break;
+                          setFrag(0);
+                          break;
                      case R.id.action_barcode:
                          setFrag(1);
                          break;
+                     case R.id.action_restaurant:
+                         setFrag(2);
+                         break;
                  }
                  return true;
-
              }
          });
          frag1 = new Frag1();
          frag3 = new Frag3();
+         frag4 = new action_web_freg();
          setFrag(0);//첫프래그먼트 화면 지정
-
 
 
          Intent intent = getIntent();
@@ -72,12 +75,6 @@ public class MainActivity extends AppCompatActivity {
          frag3.setArguments(bundle);
 
 
-
-
-
-
-
-
     }
     //프레그먼트 교체가 일어나는 실행문
     private void setFrag(int n){
@@ -92,7 +89,10 @@ public class MainActivity extends AppCompatActivity {
                  ft.replace(R.id.main_frame,frag3);
                  ft.commit();
                  break;
-
+             case 2:
+                 ft.replace(R.id.main_frame,frag4);
+                 ft.commit();
+                 break;
          }
     }
 }

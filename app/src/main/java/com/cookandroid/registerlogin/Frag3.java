@@ -14,32 +14,32 @@ import androidx.fragment.app.Fragment;
 
 public class Frag3 extends Fragment {
 
-    private View view;
-    private TextView tv_id,tv_name,tv_Num,tv_Email,tv_title;
-    private Button btn_return,btn_emailch,btn_passch,btn_deleteID;
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.activity_userinfo, container,false);
+        private View view;
+        private TextView tv_id,tv_name,tv_Num,tv_Email,tv_title;
+        private Button btn_return,btn_emailch,btn_passch,btn_deleteID;
 
-
-        tv_id = view.findViewById(R.id.tv_id);
-        tv_name = view.findViewById(R.id.tv_name);
-        tv_Num = view.findViewById(R.id.tv_Num);
-        tv_Email = view.findViewById(R.id.tv_Email);
-        tv_title = view.findViewById(R.id.tv_title);
+        @Nullable
+        @Override
+        public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            view = inflater.inflate(R.layout.activity_userinfo, container,false);
 
 
+            tv_id = view.findViewById(R.id.tv_id);
+            tv_name = view.findViewById(R.id.tv_name);
+            tv_Num = view.findViewById(R.id.tv_Num);
+            tv_Email = view.findViewById(R.id.tv_Email);
+            tv_title = view.findViewById(R.id.tv_title);
 
 
-        Bundle bundle = getArguments();
-        String userID = bundle.getString("userID");
-        String userPass = bundle.getString("userPass");
-        String userName = bundle.getString("userName");
-        String userNum = bundle.getString("userNum");
-        String userEmail = bundle.getString("userEmail");
 
+
+            Bundle bundle = getArguments();
+            String userID = bundle.getString("userID");
+            String userPass = bundle.getString("userPass");
+            String userName = bundle.getString("userName");
+            String userNum = bundle.getString("userNum");
+            String userEmail = bundle.getString("userEmail");
 
         tv_id.setText(userID);
         tv_name.setText(userName);

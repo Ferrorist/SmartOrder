@@ -248,16 +248,10 @@ public class Frag1 extends Fragment {
         btn_res9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 Intent intent1 = new Intent(getActivity(), GoogleMapActivity.class);
                 startActivity(intent1);
             }
         });
-
-
-
-
 
         return view;
     }
