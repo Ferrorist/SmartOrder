@@ -50,8 +50,8 @@ public class Frag1 extends Fragment {
         btn_image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(getActivity(),LoginActivity.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(getActivity(),LoginActivity.class);    startActivity(intent);
+                    getActivity().finish();
                 }
         });
 

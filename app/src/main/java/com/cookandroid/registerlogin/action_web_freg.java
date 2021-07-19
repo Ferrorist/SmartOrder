@@ -23,6 +23,9 @@ public class action_web_freg extends Fragment {
 
         webView = (WebView)view.findViewById(R.id.action_webview);
         webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setBuiltInZoomControls(true); //  webView 확대/축소 기능
+        webView.getSettings().setSupportZoom(true); //  webView 확대/축소 기능
+        webView.getSettings().setDisplayZoomControls(false); // webView 확대/축소 컨트롤박스 제거
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl("https://coop.knu.ac.kr/sub03/sub01_01.html?shop_sqno=36");
 //        webView.loadUrl("https://www.naver.com");
