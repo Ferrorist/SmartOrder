@@ -1,11 +1,9 @@
 package com.cookandroid.registerlogin;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
@@ -16,9 +14,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -36,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class MapsActivity extends Fragment implements OnMapReadyCallback, AutoPermissionsListener {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, AutoPermissionsListener {
 
     static final Integer APP_PERMISSION = 1;
     private GoogleMap mMap;
@@ -48,37 +43,21 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback, AutoPe
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        Log.i("test", "start");
-//        setContentView(R.layout.activity_maps);
-//        Log.i("test", "success setContentView");
-//        AutoPermissions.Companion.loadAllPermissions(this,APP_PERMISSION);
-//        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-//            locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-//            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-//            mapFragment.getMapAsync(this);
-//        }
-//        else {
-//            // 권한 거부가 되어 있을 때 사용.
-//        }
-//    }
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_maps, container, false);
-        Log.i("test","11");
-        if(ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-            SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.map);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.i("test", "start");
+        setContentView(R.layout.activity_maps);
+        Log.i("test", "success setContentView");
+        AutoPermissions.Companion.loadAllPermissions(this,APP_PERMISSION);
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
         }
         else {
             // 권한 거부가 되어 있을 때 사용.
         }
-
-        return view;
     }
 
     @Override

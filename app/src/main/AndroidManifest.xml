@@ -107,10 +107,6 @@
         <activity android:name=".MenuRequest" />
         <activity android:name=".FindIdActivity" />
 
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="@string/google_maps_key" />
-
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />

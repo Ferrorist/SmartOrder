@@ -250,13 +250,8 @@ public class Frag1 extends Fragment {
         btn_res9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent1 = new Intent(getActivity(), MapsActivity.class);
-//                startActivity(intent1);
-                FragmentManager fm = getFragmentManager();
-                FragmentTransaction ft = fm.beginTransaction();
-
-                ft.replace(R.id.main_frame,new MapsActivity());
-                ft.commit();
+                Intent intent1 = new Intent(getActivity(), MapsActivity.class);
+                startActivity(intent1);
             }
         });
 
