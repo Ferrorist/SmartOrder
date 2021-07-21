@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 
-public class action_web_freg extends Fragment {
+public class action_web_frag extends Fragment {
     private View view;
     private WebView webView;
 

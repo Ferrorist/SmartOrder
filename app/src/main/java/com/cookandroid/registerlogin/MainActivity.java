@@ -6,14 +6,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTransaction ft;
     private Frag1 frag1;
     private Frag3 frag3;
-    private action_web_freg frag4;
+    private action_web_frag frag4;
 
      @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
          });
          frag1 = new Frag1();
          frag3 = new Frag3();
-         frag4 = new action_web_freg();
+         frag4 = new action_web_frag();
          setFrag(0);//첫프래그먼트 화면 지정
 
 

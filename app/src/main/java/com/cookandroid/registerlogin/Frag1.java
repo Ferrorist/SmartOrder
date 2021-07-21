@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -248,8 +250,13 @@ public class Frag1 extends Fragment {
         btn_res9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1 = new Intent(getActivity(), GoogleMapActivity.class);
-                startActivity(intent1);
+//                Intent intent1 = new Intent(getActivity(), MapsActivity.class);
+//                startActivity(intent1);
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+
+                ft.replace(R.id.main_frame,new MapsActivity());
+                ft.commit();
             }
         });
 
