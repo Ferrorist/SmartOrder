@@ -46,17 +46,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i("test", "start");
-        setContentView(R.layout.activity_maps);
-        Log.i("test", "success setContentView");
         AutoPermissions.Companion.loadAllPermissions(this,APP_PERMISSION);
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            setContentView(R.layout.activity_maps);
             locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
             SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
             mapFragment.getMapAsync(this);
         }
         else {
-            // 권한 거부가 되어 있을 때 사용.
+            setContentView(R.layout.permissions_frag);
         }
     }
 
@@ -136,9 +134,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onDenied(int i, String[] strings) {
+        Toast.makeText(this, "권한이 거부되었습니다.", Toast.LENGTH_SHORT).show();
+        Log.i("test", "권한 거부");
     }
 
     @Override
     public void onGranted(int i, String[] strings) {
+        Toast.makeText(this, "권한이 허용되었습니다.", Toast.LENGTH_SHORT).show();
+        Log.i("test", "권한 허용");
     }
 }

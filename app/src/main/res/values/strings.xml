@@ -2,4 +2,6 @@
     <string name="app_name">RegisterLogin</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_test_map">Map</string>
+    <string name="permission_denied">권한 허용 후\n해당 서비스를 재실행시켜주시기 바랍니다.</string>
+    <string name="permission_granted">권한이 허용되었습니다.\n서비스를 실행합니다.</string>
 </resources>

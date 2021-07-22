@@ -81,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                               intent.putExtra("userEmail",userEmail);
                               intent.putExtra("userTicket",userTicket);
 
+                              et_pass.setText("");
                               startActivity(intent);
                           }else{ //실패한 경우
                               Toast.makeText(getApplicationContext(),"로그인에 실패하였습니다.",Toast.LENGTH_SHORT).show();

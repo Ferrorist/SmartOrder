@@ -4,12 +4,11 @@
     android:layout_height="match_parent"
     android:gravity="center"
     >
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="권한 허용 후\n해당 서비스를 재실행시켜주시기 바랍니다."
+        android:text="@string/permission_denied"
         android:textAlignment="center"
-        android:textSize="18dp"
+        android:textSize="20dp"
         android:layout_gravity="center"/>
 </LinearLayout>

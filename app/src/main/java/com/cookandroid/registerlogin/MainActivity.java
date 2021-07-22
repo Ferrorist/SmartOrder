@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fm;
     private FragmentTransaction ft;
     private Frag1 frag1;
+    private Frag2 frag2;
     private Frag3 frag3;
     private action_web_frag frag4;
 
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
              }
          });
          frag1 = new Frag1();
+         frag2 = new Frag2();
          frag3 = new Frag3();
          frag4 = new action_web_frag();
          setFrag(0);//첫프래그먼트 화면 지정
@@ -69,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
          bundle.putString("userNum",userNum);
          bundle.putString("userTicket", userTicket);
          frag1.setArguments(bundle);
+         frag2.setArguments(bundle);
          frag3.setArguments(bundle);
 
 
@@ -79,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
          ft = fm.beginTransaction();
          switch(n){
              case 0:
-                 ft.replace(R.id.main_frame,frag1);
+                 ft.replace(R.id.main_frame,frag2);
                  ft.commit();
                  break;
              case 1:

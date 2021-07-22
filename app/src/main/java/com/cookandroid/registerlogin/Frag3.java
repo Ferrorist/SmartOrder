@@ -16,20 +16,24 @@ public class Frag3 extends Fragment {
 
 
         private View view;
-        private TextView tv_id,tv_name,tv_Num,tv_Email,tv_title;
-        private Button btn_return,btn_emailch,btn_passch,btn_deleteID;
+        private TextView tv_id,tv_name,tv_Num,tv_Email;
+        private Button btn_emailch,btn_passch,btn_deleteID;
 
         @Nullable
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            view = inflater.inflate(R.layout.activity_userinfo, container,false);
+//            view = inflater.inflate(R.layout.activity_userinfo, container,false);
+            view = inflater.inflate(R.layout.activity_new_userinfo, container, false);
 
+//            tv_id = view.findViewById(R.id.tv_id);
+//            tv_name = view.findViewById(R.id.tv_name);
+//            tv_Num = view.findViewById(R.id.tv_Num);
+//            tv_Email = view.findViewById(R.id.tv_Email);
 
-            tv_id = view.findViewById(R.id.tv_id);
-            tv_name = view.findViewById(R.id.tv_name);
-            tv_Num = view.findViewById(R.id.tv_Num);
-            tv_Email = view.findViewById(R.id.tv_Email);
-            tv_title = view.findViewById(R.id.tv_title);
+            tv_id = view.findViewById(R.id.text_infoID);
+            tv_name = view.findViewById(R.id.text_infoName);
+            tv_Num = view.findViewById(R.id.text_infoNumber);
+            tv_Email = view.findViewById(R.id.text_infoEmail);
 
 
 
@@ -71,7 +75,8 @@ public class Frag3 extends Fragment {
             }
         });
 
-        btn_passch = view.findViewById(R.id.btn_passch);
+//        btn_passch = view.findViewById(R.id.btn_passch);
+        btn_passch = view.findViewById(R.id.button_changePass);
         btn_passch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,7 +101,8 @@ public class Frag3 extends Fragment {
         });
 
 
-        btn_emailch = view.findViewById(R.id.btn_emailch);
+//        btn_emailch = view.findViewById(R.id.btn_emailch);
+        btn_emailch = view.findViewById(R.id.button_changeEmail);
         btn_emailch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
