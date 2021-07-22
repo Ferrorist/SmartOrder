@@ -37,8 +37,6 @@ public class ChangeEmailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_changemail);
 
-        tv_new = findViewById(R.id.tv_name);
-        tv_current = findViewById(R.id.tv_Num);
         tv_email = findViewById(R.id.tv_email);
         et_new = findViewById(R.id.et_new);
         textView10 = findViewById(R.id.textView10);

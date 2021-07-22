@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
          ft = fm.beginTransaction();
          switch(n){
              case 0:
-                 ft.replace(R.id.main_frame,frag2);
+                 ft.replace(R.id.main_frame,frag1);
                  ft.commit();
                  break;
              case 1:

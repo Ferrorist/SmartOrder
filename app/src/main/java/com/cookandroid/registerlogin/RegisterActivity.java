@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         //아이디 값 찾아주기
         et_id = findViewById(R.id.et_findID);
-        et_pass = findViewById(R.id.et_findEmail);
+        et_pass = findViewById(R.id.et_pass);
         et_pass2 = findViewById(R.id.et_pass2);
         et_name = findViewById(R.id.et_name);
         et_num = findViewById(R.id.et_num);
@@ -206,9 +206,9 @@ public class RegisterActivity extends AppCompatActivity {
         btn_return.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent1 = new Intent(RegisterActivity.this, LoginActivity.class);
-                startActivity(intent1);
+//                Intent intent1 = new Intent(RegisterActivity.this, LoginActivity.class);
+//                startActivity(intent1);
+                finish();
             }
         });
 

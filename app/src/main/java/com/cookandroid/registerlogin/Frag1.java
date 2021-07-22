@@ -48,24 +48,24 @@ public class Frag1 extends Fragment {
 
 
 
-        final ImageButton btn_image = (ImageButton)view.findViewById(R.id.btn_image);
+        final ImageButton btn_image = (ImageButton)view.findViewById(R.id.button_logout);
         btn_image.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
 //                    Intent intent = new Intent(getActivity(),LoginActivity.class);    startActivity(intent);
-                    getActivity().finish();
-                }
+                getActivity().finish();
+            }
         });
 
-        final ImageButton btn_res1 = (ImageButton)view.findViewById(R.id.btn_res1);
-        final ImageButton btn_res2 = (ImageButton)view.findViewById(R.id.btn_res2);
-        final ImageButton btn_res3 = (ImageButton)view.findViewById(R.id.btn_res3);
-        final ImageButton btn_res4 = (ImageButton)view.findViewById(R.id.btn_res4);
-        final ImageButton btn_res5 = (ImageButton)view.findViewById(R.id.btn_res5);
-        final ImageButton btn_res6 = (ImageButton)view.findViewById(R.id.btn_res6);
-        final ImageButton btn_res7 = (ImageButton)view.findViewById(R.id.btn_res7);
-        final ImageButton btn_res8 = (ImageButton)view.findViewById(R.id.btn_res8);
-        final ImageButton btn_res9 = (ImageButton)view.findViewById(R.id.btn_res9);
+        final ImageButton btn_res1 = (ImageButton)view.findViewById(R.id.button_rest1);
+        final ImageButton btn_res2 = (ImageButton)view.findViewById(R.id.button_rest2);
+        final ImageButton btn_res3 = (ImageButton)view.findViewById(R.id.button_rest3);
+        final ImageButton btn_res4 = (ImageButton)view.findViewById(R.id.button_rest4);
+        final ImageButton btn_res5 = (ImageButton)view.findViewById(R.id.button_rest5);
+        final ImageButton btn_res6 = (ImageButton)view.findViewById(R.id.button_rest6);
+        final ImageButton btn_res7 = (ImageButton)view.findViewById(R.id.button_ticket);
+        final ImageButton btn_res8 = (ImageButton)view.findViewById(R.id.button_uselist);
+        final ImageButton btn_res9 = (ImageButton)view.findViewById(R.id.button_map);
         btn_res1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

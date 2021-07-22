@@ -9,6 +9,6 @@
         android:layout_height="wrap_content"
         android:text="@string/permission_denied"
         android:textAlignment="center"
-        android:textSize="20dp"
+        android:textSize="19dp"
         android:layout_gravity="center"/>
 </LinearLayout>

@@ -23,7 +23,7 @@ public class Frag3 extends Fragment {
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 //            view = inflater.inflate(R.layout.activity_userinfo, container,false);
-            view = inflater.inflate(R.layout.activity_new_userinfo, container, false);
+            view = inflater.inflate(R.layout.activity_userinfo, container, false);
 
 //            tv_id = view.findViewById(R.id.tv_id);
 //            tv_name = view.findViewById(R.id.tv_name);

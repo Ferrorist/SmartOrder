@@ -155,9 +155,7 @@ public class restaurant1 extends AppCompatActivity {
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 finish();
-
 //                Intent intent = getIntent();
 //                String userID = intent.getStringExtra("userID");
 //                String userPass = intent.getStringExtra("userPass");
@@ -174,7 +172,6 @@ public class restaurant1 extends AppCompatActivity {
 //                intent1.putExtra("userEmail",userEmail);
 //                intent1.putExtra("userTicket", userTicket);
 //                startActivity(intent1);
-
             }
         });
     }
