@@ -54,7 +54,6 @@ public class UsedTicket extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load2);
 
-        mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
         mlistView = (ListView) findViewById(R.id.listView_main_list);
         mArrayList = new ArrayList<>();
 
@@ -69,7 +68,6 @@ public class UsedTicket extends AppCompatActivity {
         String userNum = intent.getStringExtra("userNum");
         String userTicket = intent.getStringExtra("userTicket");
 
-        textView9 = findViewById(R.id.textView9);
         btn_home = findViewById(R.id.btn_home);
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override

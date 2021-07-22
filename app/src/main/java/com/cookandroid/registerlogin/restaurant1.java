@@ -64,22 +64,18 @@ public class restaurant1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurant1);
+        setContentView(R.layout.activity_restaurant1); // ★
 
         Date date = new Date();
         String time = mFormat.format(date);
 
-        mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
         mlistView = (ListView) findViewById(R.id.listView_main_list);
         mArrayList = new ArrayList<>();
-        textView9 = findViewById(R.id.textView9);
-        textView13 = (TextView) findViewById(R.id.textView13);
-        textView14 = (TextView) findViewById(R.id.textView14);
         textView15 = (TextView) findViewById(R.id.textView15);
         textView17 = (TextView) findViewById(R.id.textView17);
 
         GetData task = new GetData();
-        task.execute("http://thee153.dothome.co.kr/MenuList1.php");
+        task.execute("http://thee153.dothome.co.kr/MenuList1.php"); // ★, 해당 php에서 데이터들을 얻는듯.
 
         btn_buy = findViewById(R.id.btn_buy);
         btn_buy.setOnClickListener(new View.OnClickListener() {
@@ -133,19 +129,18 @@ public class restaurant1 extends AppCompatActivity {
                             }
                         }
                     };
-                    String R = "정보센터식당";
+                    String R = "정보센터식당"; // ★
                     String usecheck = "NO";
                     String usedate = "";
                     int num = (int)(Math.random() * 100000000 - 1);
                     String barcode = num + "";
                     MenuRequest menuRequest = new MenuRequest(userID, Menu, Price, R, time,usedate, usecheck,barcode, responseListener);
-                    RequestQueue queue = Volley.newRequestQueue(restaurant1.this);
+                    RequestQueue queue = Volley.newRequestQueue(restaurant1.this);  // ★
                     queue.add(menuRequest);
 
-                    Count1Request countRequest = new Count1Request(menu,time, responseListener);
-                    RequestQueue queue1 = Volley.newRequestQueue(restaurant1.this);
+                    Count1Request countRequest = new Count1Request(menu,time, responseListener); // ★
+                    RequestQueue queue1 = Volley.newRequestQueue(restaurant1.this); // ★
                     queue1.add(countRequest);
-
 
                 }
             }
@@ -296,7 +291,6 @@ public class restaurant1 extends AppCompatActivity {
                 String note = item.getString("note");
 
 
-
                   HashMap<String,String> hashMap = new HashMap<>();
                  if(date2.equals(time)){ //&& date2.equals(time)
                     hashMap.put(TAG_ID, menu);
@@ -311,11 +305,11 @@ public class restaurant1 extends AppCompatActivity {
             }
 
             ListAdapter adapter = new SimpleAdapter(
-                    restaurant1.this, mArrayList, R.layout.item_list1,
+                    restaurant1.this, mArrayList, R.layout.item_list1, // ★
                     new String[]{TAG_ID,TAG_NAME, TAG_ADDRESS},
                     new int[]{R.id.textView_list_id, R.id.textView_list_name, R.id.textView_list_address}
             );
-            restaurant1.ClickListener listener = new restaurant1.ClickListener();
+            restaurant1.ClickListener listener = new restaurant1.ClickListener(); // ★
             mlistView.setOnItemClickListener(listener);
             mlistView.setAdapter(adapter);
 
@@ -337,7 +331,5 @@ public class restaurant1 extends AppCompatActivity {
 
         }
     }
-
-
 }
 

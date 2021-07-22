@@ -66,12 +66,8 @@ public class restaurant2 extends AppCompatActivity {
         Date date = new Date();
         String time = mFormat.format(date);
 
-        mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
         mlistView = (ListView) findViewById(R.id.listView_main_list);
         mArrayList = new ArrayList<>();
-        textView9 = findViewById(R.id.textView9);
-        textView13 = (TextView) findViewById(R.id.textView13);
-        textView14 = (TextView) findViewById(R.id.textView14);
         textView15 = (TextView) findViewById(R.id.textView15);
         textView17 = (TextView) findViewById(R.id.textView17);
 
@@ -151,9 +147,7 @@ public class restaurant2 extends AppCompatActivity {
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 finish();
-
 //                Intent intent = getIntent();
 //                String userID = intent.getStringExtra("userID");
 //                String userPass = intent.getStringExtra("userPass");
@@ -162,7 +156,7 @@ public class restaurant2 extends AppCompatActivity {
 //                String userNum = intent.getStringExtra("userNum");
 //                String userTicket = intent.getStringExtra("userTicket");
 //
-//                Intent intent1 = new Intent(restaurant2.this, MainActivity.class);
+//                Intent intent1 = new Intent(restaurant1.this, MainActivity.class);
 //                intent1.putExtra("userID",userID);
 //                intent1.putExtra("userPass",userPass);
 //                intent1.putExtra("userName",userName);
@@ -170,8 +164,6 @@ public class restaurant2 extends AppCompatActivity {
 //                intent1.putExtra("userEmail",userEmail);
 //                intent1.putExtra("userTicket", userTicket);
 //                startActivity(intent1);
-
-
             }
         });
     }

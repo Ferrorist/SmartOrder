@@ -58,11 +58,9 @@ public class LoadActivity extends AppCompatActivity {
     String price;
     String Barcode;
 
-    private TextView mTextViewResult;
     ArrayList<HashMap<String, String>> mArrayList;
     ListView mlistView;
     String mJsonString;
-    TextView textView9;
     private Button btn_home;
 
 
@@ -72,7 +70,6 @@ public class LoadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_load);
 
-        mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
         mlistView = (ListView) findViewById(R.id.listView_main_list);
         mArrayList = new ArrayList<>();
 
@@ -87,7 +84,6 @@ public class LoadActivity extends AppCompatActivity {
         String userNum = intent.getStringExtra("userNum");
         String userTicket = intent.getStringExtra("userTicket");
 
-        textView9 = findViewById(R.id.textView9);
         btn_home = findViewById(R.id.btn_home);
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override

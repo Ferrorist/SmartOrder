@@ -66,12 +66,8 @@ public class restaurant4 extends AppCompatActivity {
         Date date = new Date();
         String time = mFormat.format(date);
 
-        mTextViewResult = (TextView)findViewById(R.id.textView_main_result);
         mlistView = (ListView) findViewById(R.id.listView_main_list);
         mArrayList = new ArrayList<>();
-        textView9 = findViewById(R.id.textView9);
-        textView13 = (TextView) findViewById(R.id.textView13);
-        textView14 = (TextView) findViewById(R.id.textView14);
         textView15 = (TextView) findViewById(R.id.textView15);
         textView17 = (TextView) findViewById(R.id.textView17);
 
