@@ -31,14 +31,10 @@ public class FindIdActivity extends AppCompatActivity {
         et_findnum= findViewById(R.id.et_findnum);
         et_findemail = findViewById(R.id.et_findemail);
 
-
-
-
         btn_findid = findViewById(R.id.btn_findid);
             btn_findid.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     String userName = et_findname.getText().toString();
                     String userNum = et_findnum.getText().toString();
                     String userEmail = et_findemail.getText().toString();
@@ -48,12 +44,9 @@ public class FindIdActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "값을 입력해 주세요", Toast.LENGTH_SHORT).show();
                     }
                     else {
-
                         Response.Listener<String> responseListener =new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
-
-
                                 try {
                                     JSONObject jasonObject = new JSONObject(response);
                                     boolean success = jasonObject.getBoolean("success");
@@ -62,6 +55,7 @@ public class FindIdActivity extends AppCompatActivity {
                                         Intent intent = new Intent(FindIdActivity.this, FindResultPage.class);
                                         intent.putExtra("userID",userID);
                                         startActivity(intent);
+                                        finish();
                                     }else{ //실패한 경우
                                         Toast.makeText(getApplicationContext(),"일치하는 정보가 없습니다.",Toast.LENGTH_SHORT).show();
                                         return;
@@ -69,8 +63,6 @@ public class FindIdActivity extends AppCompatActivity {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-
-
                             }
                         };
                         FindIdRequest findIdrequest = new FindIdRequest(userName, userEmail,Integer.parseInt(userNum), responseListener);
@@ -80,21 +72,12 @@ public class FindIdActivity extends AppCompatActivity {
                 }
             });
 
-
         btn_return = findViewById(R.id.btn_return);
         btn_return.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent intent1 = new Intent(FindIdActivity.this, LoginActivity.class);
-                startActivity(intent1);
+                finish();
             }
         });
-
-
-
-
-
-
     }
 }

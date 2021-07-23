@@ -2,6 +2,7 @@ package com.cookandroid.registerlogin;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,18 +46,21 @@ public class testActivity extends AppCompatActivity {
             @NonNull
             @Override
             public Fragment createFragment(int position) {
-                return fragmentList.get(position);
+//                Log.i("log_i","createFragment position: " + position);
+                return fragmentList.get(position%6);
             }
 
             @Override
             public int getItemCount() {
-                return fragmentList.size();
+                return 300;
+//                return fragmentList.size();
             }
         });
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewpager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                tab.setText(titles[position]);
+                tab.setText(titles[position%6]);
+//                Log.i("log_i","onConfigureTab position: " + position);
             }
         });
         tabLayoutMediator.attach();

@@ -21,7 +21,6 @@ public class FindIdRequest extends StringRequest {
         map.put("userEmail",userEmail);
 
     }
-
     @Override
     protected Map<String, String> getParams() throws AuthFailureError {
         return map;
