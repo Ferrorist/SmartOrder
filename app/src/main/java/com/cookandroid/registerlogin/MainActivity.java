@@ -21,10 +21,11 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fm;
     private FragmentTransaction ft;
     private Frag1 frag1;
+    private Frag1_1 frag1_1;
     private Frag2 frag2;
     private Frag3 frag3;
     private action_web_frag frag4;
-
+    String userID, userPass, userName, userEmail, userNum, userTicket;
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,11 +45,17 @@ public class MainActivity extends AppCompatActivity {
                      case R.id.action_restaurant:
                          setFrag(2);
                          break;
+//                     case R.id.action_test:
+//                         Intent intent = new Intent(MainActivity.this, testActivity.class);
+//                         intent.putExtra("userID", userID);
+//                         startActivity(intent);
+//                         break;
                  }
                  return true;
              }
          });
          frag1 = new Frag1();
+         frag1_1 = new Frag1_1();
          frag2 = new Frag2();
          frag3 = new Frag3();
          frag4 = new action_web_frag();
@@ -56,12 +63,12 @@ public class MainActivity extends AppCompatActivity {
 
 
          Intent intent = getIntent();
-         String userID = intent.getStringExtra("userID");
-         String userPass = intent.getStringExtra("userPass");
-         String userName = intent.getStringExtra("userName");
-         String userEmail = intent.getStringExtra("userEmail");
-         String userNum = intent.getStringExtra("userNum");
-         String userTicket = intent.getStringExtra("userTicket");
+         userID = intent.getStringExtra("userID");
+         userPass = intent.getStringExtra("userPass");
+         userName = intent.getStringExtra("userName");
+         userEmail = intent.getStringExtra("userEmail");
+         userNum = intent.getStringExtra("userNum");
+         userTicket = intent.getStringExtra("userTicket");
 
          Bundle bundle = new Bundle();
          bundle.putString("userID",userID);
@@ -71,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
          bundle.putString("userNum",userNum);
          bundle.putString("userTicket", userTicket);
          frag1.setArguments(bundle);
+         frag1_1.setArguments(bundle);
          frag2.setArguments(bundle);
          frag3.setArguments(bundle);
 
@@ -82,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
          ft = fm.beginTransaction();
          switch(n){
              case 0:
-                 ft.replace(R.id.main_frame,frag1);
+                 ft.replace(R.id.main_frame,frag1_1);
                  ft.commit();
                  break;
              case 1:

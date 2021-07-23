@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        //아이디 찾기 버튼
         btn_findid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

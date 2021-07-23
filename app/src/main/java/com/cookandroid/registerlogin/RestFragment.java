@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListAdapter;
@@ -14,8 +16,9 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,10 +29,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -37,8 +38,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-
-public class restaurant1 extends AppCompatActivity {
+public class RestFragment extends Fragment {
 
     private static String TAG = "phptest_MainActivity";
 
@@ -50,51 +50,64 @@ public class restaurant1 extends AppCompatActivity {
 
     String []data1 = new String [50];
     String []data2 = new String [50];
-    String menu;
-    String price;
-    private TextView mTextViewResult;
+    String menu = "null";
+    String price = "null";
+    String php_address = null;
     ArrayList<HashMap<String, String>> mArrayList;
     ListView mlistView;
     String mJsonString;
-    TextView textView9,textView13,textView14,textView15,textView17;
-    private Button btn_home,btn_buy;
+    TextView rest_name,menuname,pricetext;
+    private Button btn_buy;
 
 
+    private static String input_number = "1";
+    private static String input_name = "";
+    private String restaurant_number;
+    private String user_ID;
+    public RestFragment() {
+
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurant1); // ★
+        if (getArguments() != null){
+            restaurant_number = getArguments().getString(input_number);
+            user_ID = getArguments().getString(input_name);
+        }
+    }
 
+    public static RestFragment newInstance(String param1, String param2) {
+        RestFragment fragment = new RestFragment();
+        Bundle args = new Bundle();
+        args.putString(input_number, param1);
+        args.putString(input_name, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_restaurant, container, false);
         Date date = new Date();
         String time = mFormat.format(date);
 
-        mlistView = (ListView) findViewById(R.id.listView_main_list);
+        mlistView = (ListView) view.findViewById(R.id.listView_main_list);
         mArrayList = new ArrayList<>();
-        textView15 = (TextView) findViewById(R.id.textView15);
-        textView17 = (TextView) findViewById(R.id.textView17);
-
-        GetData task = new GetData();
-        task.execute("http://thee153.dothome.co.kr/MenuList1.php"); // ★, 해당 php에서 데이터들을 얻는듯.
-
-        btn_buy = findViewById(R.id.btn_buy);
+        rest_name = (TextView) view.findViewById(R.id.restaurant_name);
+        menuname = (TextView) view.findViewById(R.id.menu_name);
+        pricetext = (TextView) view.findViewById(R.id.price_text);
+        btn_buy = view.findViewById(R.id.btn_buy);
         btn_buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // edittext에 현재 입력되어 있는 값을 Get해준다
                 String Menu = menu;
                 String Price = price;
-                Intent intent = getIntent();
-                String userID = intent.getStringExtra("userID");
-                String userPass = intent.getStringExtra("userPass");
-                String userName = intent.getStringExtra("userName");
-                String userEmail = intent.getStringExtra("userEmail");
-                String userNum = intent.getStringExtra("userNum");
-                String userTicket = intent.getStringExtra("userTicket");
                 Date date = new Date();
                 String time = mFormat.format(date);
-                if (menu.equals(""))
-                    Toast.makeText(getApplicationContext(), "메뉴를 선택해 주세요", Toast.LENGTH_SHORT).show();
+                if (Menu.equals("null"))
+                    Toast.makeText(getContext(), "메뉴를 선택해 주세요", Toast.LENGTH_SHORT).show();
                 else {
                     Response.Listener<String> responseListener = new Response.Listener<String>() {
                         @Override
@@ -102,25 +115,10 @@ public class restaurant1 extends AppCompatActivity {
                             try {
                                 JSONObject jasonObject = new JSONObject(response);
                                 boolean success = jasonObject.getBoolean("success");
-//                                Intent intent = getIntent();
-//                                String userID = intent.getStringExtra("userID");
-//                                String userPass = intent.getStringExtra("userPass");
-//                                String userName = intent.getStringExtra("userName");
-//                                String userEmail = intent.getStringExtra("userEmail");
-//                                String userNum = intent.getStringExtra("userNum");
-//                                String userTicket = intent.getStringExtra("userTicket");
                                 if (success) {
-                                    Toast.makeText(getApplicationContext(), menu + " " + price + "에 구매 성공!", Toast.LENGTH_SHORT).show();
-//                                    Intent intent1 = new Intent(restaurant1.this, MainActivity.class);
-//                                    intent1.putExtra("userID", userID);
-//                                    intent1.putExtra("userPass", userPass);
-//                                    intent1.putExtra("userName", userName);
-//                                    intent1.putExtra("userNum", userNum);
-//                                    intent1.putExtra("userEmail", userEmail);
-//                                    intent1.putExtra("userTicket", userTicket);
-//                                    startActivity(intent1);
+                                    Toast.makeText(getContext(), menu + " " + price + "원에 구매 성공!", Toast.LENGTH_SHORT).show();
                                 } else { //실패한 경우
-                                    Toast.makeText(getApplicationContext(), "구매에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getContext(), "구매에 실패하였습니다.", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                             } catch (JSONException e) {
@@ -128,34 +126,46 @@ public class restaurant1 extends AppCompatActivity {
                             }
                         }
                     };
-                    String R = "정보센터식당"; // ★
+                    String R = rest_name.getText().toString();
                     String usecheck = "NO";
                     String usedate = "";
                     int num = (int)(Math.random() * 100000000 - 1);
                     String barcode = num + "";
-                    MenuRequest menuRequest = new MenuRequest(userID, Menu, Price, R, time,usedate, usecheck,barcode, responseListener);
-                    RequestQueue queue = Volley.newRequestQueue(restaurant1.this);  // ★
+                    MenuRequest menuRequest = new MenuRequest(user_ID, Menu, Price, R, time,usedate, usecheck,barcode, responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(getContext());  // ★
                     queue.add(menuRequest);
 
                     Count1Request countRequest = new Count1Request(menu,time, responseListener); // ★
-                    RequestQueue queue1 = Volley.newRequestQueue(restaurant1.this); // ★
+                    RequestQueue queue1 = Volley.newRequestQueue(getContext()); // ★
                     queue1.add(countRequest);
-
                 }
             }
         });
-
-        btn_home = findViewById(R.id.btn_home);
-        btn_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        Execute();
+        return view;
     }
 
+    private void Execute() {
+        switch(restaurant_number){
+            case "1":
+                rest_name.setText("정보센터식당"); break;
+            case "2":
+                rest_name.setText("복지관 교직원식당"); break;
+            case "3":
+                rest_name.setText("카페테리아 첨성"); break;
+            case "4":
+                rest_name.setText("GP감꽃푸드코트"); break;
+            case "5":
+                rest_name.setText("공학식당1"); break;
+            case "6":
+                rest_name.setText("공학식당2"); break;
+        }
+        GetData task = new GetData();
+        php_address = "http://thee153.dothome.co.kr/MenuList" + restaurant_number + ".php";
+        task.execute(php_address);
+    }
 
-    private class GetData extends AsyncTask<String, Void, String>{
+    private class GetData extends AsyncTask<String, Void, String> {
         ProgressDialog progressDialog;
         String errorString = null;
 
@@ -163,32 +173,28 @@ public class restaurant1 extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            progressDialog = ProgressDialog.show(restaurant1.this,
+            progressDialog = ProgressDialog.show(getActivity(),
                     "Please Wait", null, true, true);
         }
 
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-
             progressDialog.dismiss();
-
             Log.d(TAG, "response  - " + result);
 
             if (result == null){
-
-                Toast.makeText(getApplicationContext(),"조회할 자료가 없습니다.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"조회할 자료가 없습니다.",Toast.LENGTH_SHORT).show();
             }
             else {
-
                 mJsonString = result;
                 showResult();
             }
         }
 
+
         @Override
         protected String doInBackground(String... params) {
-
             String serverURL = params[0];
 
             try {
@@ -210,7 +216,6 @@ public class restaurant1 extends AppCompatActivity {
                     inputStream = httpURLConnection.getErrorStream();
                 }
 
-
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
@@ -220,8 +225,11 @@ public class restaurant1 extends AppCompatActivity {
                 while((line = bufferedReader.readLine()) != null){
                     sb.append(line);
                 }
+
                 bufferedReader.close();
                 return sb.toString().trim();
+
+
             } catch (Exception e) {
                 Log.d(TAG, "InsertData: Error ", e);
                 errorString = e.toString();
@@ -229,7 +237,6 @@ public class restaurant1 extends AppCompatActivity {
             }
         }
     }
-
 
     private void showResult(){
         try {
@@ -239,22 +246,14 @@ public class restaurant1 extends AppCompatActivity {
             String time = mFormat.format(date);
 
             for(int i=0;i<jsonArray.length();i++){
-                Intent intent = getIntent();
-                String userID = intent.getStringExtra("userID");
-                String userPass = intent.getStringExtra("userPass");
-                String userName = intent.getStringExtra("userName");
-                String userEmail = intent.getStringExtra("userEmail");
-                String userNum = intent.getStringExtra("userNum");
-                String userTicket = intent.getStringExtra("userTicket");
-
                 JSONObject item = jsonArray.getJSONObject(i);
                 String menu = item.getString("menu");
                 String date2 = item.getString("date");
                 String price = item.getString("price");
                 String note = item.getString("note");
 
-                  HashMap<String,String> hashMap = new HashMap<>();
-                 if(date2.equals(time)){ //&& date2.equals(time)
+                HashMap<String,String> hashMap = new HashMap<>();
+                if(date2.equals(time)){ //&& date2.equals(time)
                     hashMap.put(TAG_ID, menu);
                     hashMap.put(TAG_NAME, price);
                     hashMap.put(TAG_ADDRESS, note);
@@ -262,36 +261,29 @@ public class restaurant1 extends AppCompatActivity {
                     data2[i]=price;
                     mArrayList.add(hashMap);
                 }
-
-
             }
 
             ListAdapter adapter = new SimpleAdapter(
-                    restaurant1.this, mArrayList, R.layout.item_list1, // ★
+                    getContext(), mArrayList, R.layout.item_list,
                     new String[]{TAG_ID,TAG_NAME, TAG_ADDRESS},
                     new int[]{R.id.textView_list_id, R.id.textView_list_name, R.id.textView_list_address}
             );
-            restaurant1.ClickListener listener = new restaurant1.ClickListener(); // ★
+            ClickListener listener = new ClickListener();
             mlistView.setOnItemClickListener(listener);
             mlistView.setAdapter(adapter);
 
         } catch (JSONException e) {
-
             Log.d(TAG, "showResult : ", e);
         }
-
     }
 
     class ClickListener implements AdapterView.OnItemClickListener{
-
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            textView15.setText(data1[position]);
+            menuname.setText(data1[position]);
             menu=data1[position];
-            textView17.setText(data2[position]);
+            pricetext.setText(data2[position]);
             price=data2[position];
-
         }
     }
 }
-
