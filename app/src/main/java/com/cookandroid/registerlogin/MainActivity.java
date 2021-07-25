@@ -45,11 +45,6 @@ public class MainActivity extends AppCompatActivity {
                      case R.id.action_restaurant:
                          setFrag(2);
                          break;
-//                     case R.id.action_test:
-//                         Intent intent = new Intent(MainActivity.this, testActivity.class);
-//                         intent.putExtra("userID", userID);
-//                         startActivity(intent);
-//                         break;
                  }
                  return true;
              }
@@ -90,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
          ft = fm.beginTransaction();
          switch(n){
              case 0:
-                 ft.replace(R.id.main_frame,frag1_1);
+                 ft.replace(R.id.main_frame,frag1);
                  ft.commit();
                  break;
              case 1:

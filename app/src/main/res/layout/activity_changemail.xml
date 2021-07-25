@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.1" />
+        android:layout_weight="0.05" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -22,10 +22,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="이메일 수정"
-            android:textSize="30dp"
+            android:textSize="28dp"
             android:gravity="center"
             android:textAlignment="center"/>
-
     </LinearLayout>
 
 
@@ -40,10 +39,11 @@
             android:id="@+id/tv_current"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="현재 이메일"
-            android:textSize="25dp"
             android:layout_marginLeft="16dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:text="현재 이메일"
+            android:gravity="center|left"
+            android:textSize="25dp" />
 
         <TextView
             android:id="@+id/tv_email"
@@ -58,9 +58,10 @@
             android:id="@+id/tv_new"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="변경할 이메일   "
+            android:text="변경할 이메일"
             android:layout_marginLeft="16dp"
             android:textSize="25dp"
+            android:gravity="center|left"
             android:layout_weight="1"/>
 
     </LinearLayout>
@@ -71,7 +72,6 @@
         android:layout_weight="0.1">
 
         <TableRow>
-
             <EditText
                 android:id="@+id/et_new"
                 android:layout_width="250dp"
@@ -89,11 +89,7 @@
                 android:layout_marginLeft="8dp"
                 android:text="중복확인" />
         </TableRow>
-
     </TableLayout>
-
-
-
 
     <LinearLayout
         android:orientation="vertical"
@@ -114,11 +110,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="메인으로"/>
-
-
-
     </LinearLayout>
-
-
 
 </LinearLayout>

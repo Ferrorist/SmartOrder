@@ -74,16 +74,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     public void findUserLocation() { // 유저 주소 찾기.
+        Location location;
         try {
-            Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             if(location != null){
                 double latitude = location.getLatitude();
                 double longitude = location.getLongitude();
                 user_latlng = new LatLng(latitude, longitude); // 유저가 있는 위치의 좌표로 세팅.
-
+                Toast.makeText(this, "latitude : " + user_latlng.latitude + ", longitude: " + user_latlng.longitude, Toast.LENGTH_SHORT).show();
                 GPSListener gps = new GPSListener();
                 long minTime = 3000;
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, minTime, 0 , gps);
+            } else {
+                location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                if(location != null) {
+                    double latitude = location.getLatitude();
+                    double longitude = location.getLongitude();
+                    user_latlng = new LatLng(latitude, longitude); // 유저가 있는 위치의 좌표로 세팅.
+                    Toast.makeText(this, "latitude : " + user_latlng.latitude + ", longitude: " + user_latlng.longitude, Toast.LENGTH_SHORT).show();
+                    GPSListener gps = new GPSListener();
+                    long minTime = 3000;
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, minTime, 0, gps);
+                }
             }
         } catch (SecurityException e){
             e.printStackTrace();

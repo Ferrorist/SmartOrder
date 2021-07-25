@@ -30,8 +30,6 @@ public class ChangeEmailActivity extends AppCompatActivity {
     private boolean validate = false;
     private AlertDialog dialog;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +48,6 @@ public class ChangeEmailActivity extends AppCompatActivity {
                 String userName = intent.getStringExtra("userName");
                 String userNum = intent.getStringExtra("userNum");
                 String userEmail = et_new.getText().toString();
-
 
                 if(validate2 != true)
                 {
@@ -76,7 +73,6 @@ public class ChangeEmailActivity extends AppCompatActivity {
                                     String userNum = intent.getStringExtra("userNum");
                                     String userTicket = intent.getStringExtra("userTicket");
 
-
                                     new Handler().postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
@@ -101,8 +97,6 @@ public class ChangeEmailActivity extends AppCompatActivity {
 
                                     dialog = builder.setMessage("변경 성공!").setPositiveButton("확인", null).create();
                                     dialog.show();
-
-
                                 } else {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(ChangeEmailActivity.this);
                                     dialog = builder.setMessage("변경 실패..").setNegativeButton("확인", null).create();
@@ -117,7 +111,6 @@ public class ChangeEmailActivity extends AppCompatActivity {
                     RequestQueue queue = Volley.newRequestQueue(ChangeEmailActivity.this);
                     queue.add(changeuserinfo);
                 }
-
             }
         });
 
@@ -194,8 +187,6 @@ public class ChangeEmailActivity extends AppCompatActivity {
             }
         });
 
-
-
         Intent intent = getIntent();
         String userID = intent.getStringExtra("userID");
         String userPass = intent.getStringExtra("userPass");
@@ -205,10 +196,6 @@ public class ChangeEmailActivity extends AppCompatActivity {
         String userTicket = intent.getStringExtra("userTicket");
 
         tv_email.setText(userEmail);
-
-
-
-
     }
 
 }

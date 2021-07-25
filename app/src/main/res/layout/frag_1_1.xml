@@ -14,26 +14,25 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.87">
+        <!--
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:paddingLeft="15dp"
             android:src="@drawable/flash21_logo"/>
+            -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.9"/>
+            android:layout_weight="2"/>
         <ImageButton
+            android:paddingRight="10dp"
             android:id="@+id/button_logout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:src="@drawable/ic_logout_128"
-            android:background="@android:color/transparent"
+            android:background="@android:color/white"
             android:layout_weight="1.5"/>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.05" />
     </LinearLayout>
 
     <LinearLayout
