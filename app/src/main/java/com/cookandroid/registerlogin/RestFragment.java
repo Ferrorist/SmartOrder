@@ -1,7 +1,6 @@
 package com.cookandroid.registerlogin;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,6 +36,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 public class RestFragment extends Fragment {
 
@@ -47,9 +47,9 @@ public class RestFragment extends Fragment {
     private static final String TAG_NAME = "name";
     private static final String TAG_ADDRESS ="address";
     private SimpleDateFormat mFormat = new SimpleDateFormat("yyyy/M/d"); // 날짜 포맷
+    private List<String> MenuData = new ArrayList<>();
+    private List<String> PriceData = new ArrayList<>();
 
-    String []data1 = new String [50];
-    String []data2 = new String [50];
     String menu = "null";
     String price = "null";
     String php_address = null;
@@ -172,9 +172,8 @@ public class RestFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
             progressDialog = ProgressDialog.show(getActivity(),
-                    "Please Wait", null, true, true);
+                    "잠시만 기다려주세요...", null, true, true);
         }
 
         @Override
@@ -196,7 +195,6 @@ public class RestFragment extends Fragment {
         @Override
         protected String doInBackground(String... params) {
             String serverURL = params[0];
-
             try {
                 URL url = new URL(serverURL);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -257,8 +255,8 @@ public class RestFragment extends Fragment {
                     hashMap.put(TAG_ID, menu);
                     hashMap.put(TAG_NAME, price);
                     hashMap.put(TAG_ADDRESS, note);
-                    data1[i]=menu;
-                    data2[i]=price;
+                    MenuData.add(menu);
+                    PriceData.add(price);
                     mArrayList.add(hashMap);
                 }
             }
@@ -280,10 +278,10 @@ public class RestFragment extends Fragment {
     class ClickListener implements AdapterView.OnItemClickListener{
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            menuname.setText(data1[position]);
-            menu=data1[position];
-            pricetext.setText(data2[position]);
-            price=data2[position];
+            menuname.setText(MenuData.get(position));
+            menu= menuname.getText().toString();
+            pricetext.setText(PriceData.get(position));
+            price= pricetext.getText().toString();
         }
     }
 }
