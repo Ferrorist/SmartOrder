@@ -25,9 +25,6 @@ public class MenuRequest extends StringRequest {
         map.put("usedate",usedate);
         map.put("usecheck",usecheck);
         map.put("barcode",barcode);
-
-
-
     }
 
     @Override

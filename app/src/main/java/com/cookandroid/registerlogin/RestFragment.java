@@ -1,6 +1,7 @@
 package com.cookandroid.registerlogin;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,7 +50,7 @@ public class RestFragment extends Fragment {
     private SimpleDateFormat mFormat = new SimpleDateFormat("yyyy/M/d"); // 날짜 포맷
     private List<String> MenuData = new ArrayList<>();
     private List<String> PriceData = new ArrayList<>();
-
+    private Context context;
     String menu = "null";
     String price = "null";
     String php_address = null;
@@ -89,9 +90,7 @@ public class RestFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_restaurant, container, false);
-        Date date = new Date();
-        String time = mFormat.format(date);
-
+        context = getContext();
         mlistView = (ListView) view.findViewById(R.id.listView_main_list);
         mArrayList = new ArrayList<>();
         rest_name = (TextView) view.findViewById(R.id.restaurant_name);
@@ -107,7 +106,7 @@ public class RestFragment extends Fragment {
                 Date date = new Date();
                 String time = mFormat.format(date);
                 if (Menu == null || Menu.isEmpty() || Menu.equals("null"))
-                    Toast.makeText(getContext(), "메뉴를 선택해 주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "메뉴를 선택해 주세요", Toast.LENGTH_SHORT).show();
                 else {
                     Response.Listener<String> responseListener = new Response.Listener<String>() {
                         @Override
@@ -116,9 +115,9 @@ public class RestFragment extends Fragment {
                                 JSONObject jasonObject = new JSONObject(response);
                                 boolean success = jasonObject.getBoolean("success");
                                 if (success) {
-                                    Toast.makeText(getContext(), menu + " " + price + "원에 구매 성공!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, menu + " " + price + "원에 구매 성공!", Toast.LENGTH_SHORT).show();
                                 } else { //실패한 경우
-                                    Toast.makeText(getContext(), "구매에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "구매에 실패하였습니다.", Toast.LENGTH_SHORT).show();
                                     return;
                                 }
                             } catch (JSONException e) {
@@ -132,20 +131,16 @@ public class RestFragment extends Fragment {
                     int num = (int)(Math.random() * 100000000 - 1);
                     String barcode = num + "";
                     MenuRequest menuRequest = new MenuRequest(user_ID, Menu, Price, R, time,usedate, usecheck,barcode, responseListener);
-                    RequestQueue queue = Volley.newRequestQueue(getContext());  // ★
+                    RequestQueue queue = Volley.newRequestQueue(context);  // ★
                     queue.add(menuRequest);
 
                     Count1Request countRequest = new Count1Request(menu,time, responseListener); // ★
-                    RequestQueue queue1 = Volley.newRequestQueue(getContext()); // ★
+                    RequestQueue queue1 = Volley.newRequestQueue(context); // ★
                     queue1.add(countRequest);
                 }
             }
         });
-        Execute();
-        return view;
-    }
 
-    private void Execute() {
         switch(restaurant_number){
             case "1":
                 rest_name.setText("정보센터식당"); break;
@@ -160,9 +155,20 @@ public class RestFragment extends Fragment {
             case "6":
                 rest_name.setText("공학식당2"); break;
         }
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        Execute();
+        super.onResume();
+    }
+
+    private void Execute() {
         GetData task = new GetData();
         php_address = "http://thee153.dothome.co.kr/MenuList" + restaurant_number + ".php";
         task.execute(php_address);
+
     }
 
     private class GetData extends AsyncTask<String, Void, String> {
@@ -183,7 +189,7 @@ public class RestFragment extends Fragment {
             Log.d(TAG, "response  - " + result);
 
             if (result == null){
-                Toast.makeText(getContext(),"조회할 자료가 없습니다.",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"조회할 자료가 없습니다.",Toast.LENGTH_SHORT).show();
             }
             else {
                 mJsonString = result;
@@ -251,7 +257,7 @@ public class RestFragment extends Fragment {
                 String note = item.getString("note");
 
                 HashMap<String,String> hashMap = new HashMap<>();
-                if(date2.equals(time)){ //&& date2.equals(time)
+                if(date2.equals(time)){
                     hashMap.put(TAG_ID, menu);
                     hashMap.put(TAG_NAME, price);
                     hashMap.put(TAG_ADDRESS, note);
@@ -262,7 +268,9 @@ public class RestFragment extends Fragment {
             }
 
             ListAdapter adapter = new SimpleAdapter(
-                    getContext(), mArrayList, R.layout.item_list,
+                    context,
+                    mArrayList,
+                    R.layout.item_list,
                     new String[]{TAG_ID,TAG_NAME, TAG_ADDRESS},
                     new int[]{R.id.textView_list_id, R.id.textView_list_name, R.id.textView_list_address}
             );
