@@ -106,7 +106,7 @@ public class RestFragment extends Fragment {
                 String Price = price;
                 Date date = new Date();
                 String time = mFormat.format(date);
-                if (Menu.equals("null"))
+                if (Menu == null || Menu.isEmpty() || Menu.equals("null"))
                     Toast.makeText(getContext(), "메뉴를 선택해 주세요", Toast.LENGTH_SHORT).show();
                 else {
                     Response.Listener<String> responseListener = new Response.Listener<String>() {
