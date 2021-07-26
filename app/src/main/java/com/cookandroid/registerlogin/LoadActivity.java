@@ -88,24 +88,7 @@ public class LoadActivity extends AppCompatActivity {
         btn_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 finish();
-//                Intent intent = getIntent();
-//                String userID = intent.getStringExtra("userID");
-//                String userPass = intent.getStringExtra("userPass");
-//                String userName = intent.getStringExtra("userName");
-//                String userEmail = intent.getStringExtra("userEmail");
-//                String userNum = intent.getStringExtra("userNum");
-//                String userTicket = intent.getStringExtra("userTicket");
-//
-//                Intent intent1 = new Intent(LoadActivity.this, MainActivity.class);
-//                intent1.putExtra("userID",userID);
-//                intent1.putExtra("userPass",userPass);
-//                intent1.putExtra("userName",userName);
-//                intent1.putExtra("userNum",userNum);
-//                intent1.putExtra("userEmail",userEmail);
-//                intent1.putExtra("userTicket", userTicket);
-//                startActivity(intent1);
             }
         });
     }
@@ -247,7 +230,7 @@ public class LoadActivity extends AppCompatActivity {
             }
 
             ListAdapter adapter = new SimpleAdapter(
-                    LoadActivity.this, mArrayList, R.layout.item_list,
+                    LoadActivity.this, mArrayList, R.layout.ticket_item_list,
                     new String[]{TAG_ID,TAG_NAME, TAG_ADDRESS},
                     new int[]{R.id.textView_list_id, R.id.textView_list_name, R.id.textView_list_address}
             );

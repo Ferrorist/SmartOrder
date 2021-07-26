@@ -77,9 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-
-            android:text="메인으로" />
-
+            android:text="이전으로" />
 
 
     </LinearLayout>

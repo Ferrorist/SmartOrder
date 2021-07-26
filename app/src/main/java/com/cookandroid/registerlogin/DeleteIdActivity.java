@@ -28,8 +28,6 @@ public class DeleteIdActivity extends AppCompatActivity {
     private boolean validate = false;
     private AlertDialog dialog;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -161,7 +159,7 @@ public class DeleteIdActivity extends AppCompatActivity {
                                                 startActivity(intent1);
                                             }
                                         });
-                                        AlertDialog alert = builder.create();                                                       //빌더를 이용하여 AlertDialog객체를 생성합니다.
+                                        AlertDialog alert = builder.create(); //빌더를 이용하여 AlertDialog객체를 생성합니다.
                                         alert.show();
                                     }
                                     else
@@ -198,40 +196,8 @@ public class DeleteIdActivity extends AppCompatActivity {
         btn_gohome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = getIntent();
-                String userID = intent.getStringExtra("userID");
-                String userPass = intent.getStringExtra("userPass");
-                String userName = intent.getStringExtra("userName");
-                String userEmail = intent.getStringExtra("userEmail");
-                String userNum = intent.getStringExtra("userNum");
-                String userTicket = intent.getStringExtra("userTicket");
-
-                Intent intent1 = new Intent(DeleteIdActivity.this, MainActivity.class);
-                intent1.putExtra("userID",userID);
-                intent1.putExtra("userPass",userPass);
-                intent1.putExtra("userName",userName);
-                intent1.putExtra("userNum",userNum);
-                intent1.putExtra("userEmail",userEmail);
-                intent1.putExtra("userTicket", userTicket);
-                startActivity(intent1);
+                finish();
             }
         });
-
-
-
-
-        Intent intent = getIntent();
-        String userID = intent.getStringExtra("userID");
-        String userPass = intent.getStringExtra("userPass");
-        String userName = intent.getStringExtra("userName");
-        String userEmail = intent.getStringExtra("userEmail");
-        String userNum = intent.getStringExtra("userNum");
-        String userTicket = intent.getStringExtra("userTicket");
-
-
-
-
-
     }
-
 }

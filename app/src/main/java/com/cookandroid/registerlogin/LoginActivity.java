@@ -61,7 +61,6 @@ public class LoginActivity extends AppCompatActivity {
               Response.Listener<String> responseListener =new Response.Listener<String>() {
                   @Override
                   public void onResponse(String response) {
-
                       try {
                           JSONObject jasonObject = new JSONObject(response);
                           boolean success = jasonObject.getBoolean("success");
@@ -98,7 +97,6 @@ public class LoginActivity extends AppCompatActivity {
               LoginRequest loginRequest = new LoginRequest(userID, userPass, responseListener);
               RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
               queue.add(loginRequest);
-
             }
         });
     }
