@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="restaurant_name">
+        <item>정보센터식당</item>
+        <item>복지관 교직원식당</item>
+        <item>카페테리아 첨성</item>
+        <item>GP감꽃푸드코트</item>
+        <item>공학식당1</item>
+        <item>공학식당2</item>
+    </string-array>
+</resources>

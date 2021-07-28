@@ -20,16 +20,26 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
     private FragmentTransaction ft;
+    private adminFrag1 adminFrag;
     private Frag1 frag1;
     private Frag1_1 frag1_1;
     private Frag2 frag2;
     private Frag3 frag3;
     private action_web_frag frag4;
-    String userID, userPass, userName, userEmail, userNum, userTicket;
+    String userID, userPass, userName, userEmail, userNum, userTicket, login_mode;
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+         Intent intent = getIntent();
+         userID = intent.getStringExtra("userID");
+         userPass = intent.getStringExtra("userPass");
+         userName = intent.getStringExtra("userName");
+         userEmail = intent.getStringExtra("userEmail");
+         userNum = intent.getStringExtra("userNum");
+         userTicket = intent.getStringExtra("userTicket");
+         login_mode = intent.getStringExtra("loginMode");
 
          bottomNavigationView =findViewById(R.id.bottomNavi);
          bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -49,21 +59,12 @@ public class MainActivity extends AppCompatActivity {
                  return true;
              }
          });
+         adminFrag = new adminFrag1();
          frag1 = new Frag1();
-         frag1_1 = new Frag1_1();
          frag2 = new Frag2();
          frag3 = new Frag3();
          frag4 = new action_web_frag();
          setFrag(0);//첫프래그먼트 화면 지정
-
-
-         Intent intent = getIntent();
-         userID = intent.getStringExtra("userID");
-         userPass = intent.getStringExtra("userPass");
-         userName = intent.getStringExtra("userName");
-         userEmail = intent.getStringExtra("userEmail");
-         userNum = intent.getStringExtra("userNum");
-         userTicket = intent.getStringExtra("userTicket");
 
          Bundle bundle = new Bundle();
          bundle.putString("userID",userID);
@@ -73,11 +74,9 @@ public class MainActivity extends AppCompatActivity {
          bundle.putString("userNum",userNum);
          bundle.putString("userTicket", userTicket);
          frag1.setArguments(bundle);
-         frag1_1.setArguments(bundle);
          frag2.setArguments(bundle);
          frag3.setArguments(bundle);
-
-
+         adminFrag.setArguments(bundle);
     }
     //프레그먼트 교체가 일어나는 실행문
     private void setFrag(int n){
@@ -85,7 +84,12 @@ public class MainActivity extends AppCompatActivity {
          ft = fm.beginTransaction();
          switch(n){
              case 0:
-                 ft.replace(R.id.main_frame,frag1);
+                 switch(login_mode){
+                     case "admin":
+                         ft.replace(R.id.main_frame, adminFrag);    break;
+                     case "null":
+                         ft.replace(R.id.main_frame, frag1);    break;
+                 }
                  ft.commit();
                  break;
              case 1:

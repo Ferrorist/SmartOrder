@@ -13,26 +13,41 @@ import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
     private static ViewPager2 viewpager;
-    private List<UserLoginFragment> list = new ArrayList<>();
+    private List<LoginFragment> list = new ArrayList<>();
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        initView();
+    }
+
+    private void initView() {
         viewpager = findViewById(R.id.Login_ViewPager);
 
-        list.add(UserLoginFragment.newInstance("null"));
-        list.add(UserLoginFragment.newInstance("admin"));
+        list.add(LoginFragment.newInstance("null"));
+        list.add(LoginFragment.newInstance("admin"));
 
         viewpager.setAdapter(new FragmentStateAdapter(this) {
             @NonNull
             @Override
-            public Fragment createFragment(int position) {
-                return list.get(position);
-            }
+            public Fragment createFragment(int position) { return list.get(position); }
 
             @Override
-            public int getItemCount() {
-                return list.size();
+            public int getItemCount() { return list.size(); }
+        });
+
+        viewpager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                switch(position){
+                    case 0:
+                        list.get(0).setLoginMode("null");
+                        break;
+                    case 1:
+                        list.get(1).setLoginMode("admin");
+                        break;
+                }
             }
         });
     }

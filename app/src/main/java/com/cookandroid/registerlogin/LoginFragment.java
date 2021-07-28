@@ -5,7 +5,6 @@ import android.view.ViewGroup;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,23 +18,26 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class UserLoginFragment extends Fragment {
+public class LoginFragment extends Fragment {
     private EditText et_id, et_pass;
     private Button btn_login,btn_register,btn_findid;
     private static String mode;
     private static String login_mode;
     private ImageView loginlogo, arrow;
     private TextView admin_text;
-    public UserLoginFragment() {}
+    public LoginFragment() {}
 
-    public static UserLoginFragment newInstance(String param1) {
-        UserLoginFragment fragment = new UserLoginFragment();
+    public static LoginFragment newInstance(String param1) {
+        LoginFragment fragment = new LoginFragment();
         Bundle args = new Bundle();
         args.putString(mode, param1);
         fragment.setArguments(args);
         return fragment;
     }
 
+    public void setLoginMode(String mode){
+        login_mode = mode;
+    }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,6 +125,7 @@ public class UserLoginFragment extends Fragment {
                                     intent.putExtra("userNum", userNum);
                                     intent.putExtra("userEmail", userEmail);
                                     intent.putExtra("userTicket", userTicket);
+                                    intent.putExtra("loginMode", login_mode);
                                     et_pass.setText("");
                                     startActivity(intent);
 
@@ -141,6 +144,12 @@ public class UserLoginFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Toast.makeText(getContext(), "login_mode : " + login_mode, Toast.LENGTH_SHORT).show();
     }
 }
 
