@@ -114,7 +114,7 @@ public class DeleteIdActivity extends AppCompatActivity {
                                                                         String userPass = intent.getStringExtra("userPass");
                                                                         String userName = intent.getStringExtra("userName");
 
-                                                                        Intent intent1 = new Intent(DeleteIdActivity.this, LoginActivity.class);
+                                                                        Intent intent1 = new Intent(DeleteIdActivity.this, UserLoginFragment.class);
                                                                         startActivity(intent1);
                                                                     }
                                                                 }, 1500);

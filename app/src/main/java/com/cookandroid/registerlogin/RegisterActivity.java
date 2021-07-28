@@ -25,11 +25,13 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean validate2 = false;
     private AlertDialog dialog;
     private AlertDialog dialog2;
+    private String login_mode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        Intent intent = getIntent();
+        login_mode = intent.getStringExtra("mode");
         //아이디 값 찾아주기
         et_id = findViewById(R.id.et_findID);
         et_pass = findViewById(R.id.et_pass);
@@ -138,10 +140,6 @@ public class RegisterActivity extends AppCompatActivity {
                 queue.add(validateRequest);
             }
         });
-
-
-
-
         //회원가입 버튼 클릭 시 수행
 
         btn_register = findViewById(R.id.btn_register);
@@ -155,7 +153,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String userName = et_name.getText().toString();
                 String userEmail = et_email.getText().toString();
                 String userNum = et_num.getText().toString();
-                String userTicket = "null";
+                String userTicket = login_mode; // "admin" 관리자 계정, "null" 일반계정
 
                 if (userName.equals("") || userNum.equals("") || userEmail.equals("") || userID.equals("") || userPass.equals("") || userPass2.equals("")) {
                     Toast.makeText(getApplicationContext(), "값을 입력해 주세요", Toast.LENGTH_SHORT).show();
@@ -172,8 +170,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     boolean success = jasonObject.getBoolean("success");
                                     if (success) {
                                         Toast.makeText(getApplicationContext(), "회원등록에 성공하였습니다.", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                        startActivity(intent);
+                                        finish();
                                     } else { //실패한 경우
                                         Toast.makeText(getApplicationContext(), "회원등록에 실패하였습니다.", Toast.LENGTH_SHORT).show();
                                         return;
@@ -181,7 +178,6 @@ public class RegisterActivity extends AppCompatActivity {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-
                             }
                         };
                         //서버로 Volley를 이용해서 요청을 함
@@ -191,14 +187,12 @@ public class RegisterActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show();
                     }
-
                 } else if (userPass.length() > 5) {
                     Toast.makeText(getApplicationContext(), "아이디 또는 이메일이 사용중입니다.", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "비밀번호 길이가 짧습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
-
             }
         });
 

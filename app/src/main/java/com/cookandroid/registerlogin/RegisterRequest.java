@@ -15,7 +15,6 @@ public class RegisterRequest extends StringRequest {
 
     public RegisterRequest(String userID, String userPassword, String userName,String userEmail, String userTicket, int userNum, Response .Listener<String> listener){
         super(Method.POST, URL, listener, null);
-
         map = new HashMap<>();
         map.put("userID",userID);
         map.put("userPassword",userPassword);
@@ -23,8 +22,6 @@ public class RegisterRequest extends StringRequest {
         map.put("userEmail",userEmail);
         map.put("userNum",userNum + "");
         map.put("userTicket", userTicket);
-
-
     }
 
     @Override
