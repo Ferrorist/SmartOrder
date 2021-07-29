@@ -22,7 +22,7 @@ public class LoginFragment extends Fragment {
     private EditText et_id, et_pass;
     private Button btn_login,btn_register,btn_findid;
     private static String mode;
-    private static String login_mode;
+    private String login_mode;
     private ImageView loginlogo, arrow;
     private TextView admin_text;
     public LoginFragment() {}
@@ -35,9 +35,6 @@ public class LoginFragment extends Fragment {
         return fragment;
     }
 
-    public void setLoginMode(String mode){
-        login_mode = mode;
-    }
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +60,12 @@ public class LoginFragment extends Fragment {
                 loginlogo.setImageResource(R.mipmap.loginlogo_admin);
                 arrow.setVisibility(View.VISIBLE);
                 admin_text.setVisibility(View.VISIBLE);
+                btn_register.setVisibility(View.INVISIBLE);
+                btn_register.setEnabled(false);
+                btn_findid.setVisibility(View.INVISIBLE);
+                btn_findid.setEnabled(false);
                 break;
-            default:
+            case "null":
                 loginlogo.setImageResource(R.mipmap.loginlogo);
                 arrow.setVisibility(View.INVISIBLE);
                 admin_text.setVisibility(View.INVISIBLE);
@@ -144,12 +145,6 @@ public class LoginFragment extends Fragment {
             }
         });
         return view;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Toast.makeText(getContext(), "login_mode : " + login_mode, Toast.LENGTH_SHORT).show();
     }
 }
 

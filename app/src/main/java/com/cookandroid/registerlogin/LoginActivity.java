@@ -35,21 +35,6 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public int getItemCount() { return list.size(); }
         });
-
-        viewpager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                switch(position){
-                    case 0:
-                        list.get(0).setLoginMode("null");
-                        break;
-                    case 1:
-                        list.get(1).setLoginMode("admin");
-                        break;
-                }
-            }
-        });
     }
 
 }

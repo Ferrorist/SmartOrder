@@ -6,8 +6,7 @@
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
     -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -18,12 +17,12 @@
         android:required="true" />
 
     <permission
-        android:name=" com.cookandroid.registerlogin.permission.MAPS_RECEIVE"
-        android:label="signature" />
+        android:name=" com.cookandroid.registerlogin.permission.MAPS_RECEIVE" android:label="signature" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
@@ -106,10 +105,9 @@
         <activity android:name=".Map" />
         <activity android:name=".MenuRequest" />
         <activity android:name=".FindIdActivity" />
-
+        <activity android:name=".Addmenu"/>
         <uses-library
-            android:name="org.apache.http.legacy"
-            android:required="false" />
+            android:name="org.apache.http.legacy" android:required="false" />
     </application>
 
 </manifest>

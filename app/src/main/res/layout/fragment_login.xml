@@ -45,11 +45,13 @@
                 android:orientation="vertical"
                 android:gravity="center"
                 android:layout_weight="1.8">
+
                 <EditText
-                    android:id="@+id/et_id"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="아이디"/>
+                        android:id="@+id/et_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="아이디"/>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>

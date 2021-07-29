@@ -9,10 +9,10 @@ import java.util.Map;
 
 public class AddMenuRequest extends StringRequest {
     //서버 url 설정(php파일 연동)
-    static private String URL = "http://thee153.dothome.co.kr/AddMenu1.php";
+    static private String URL = "http://thee153.dothome.co.kr/AddMenu.php/";
     private Map<String, String> map;
 
-    public AddMenuRequest(String menu, String price,String date,String note,String num, Response .Listener<String> listener){
+    public AddMenuRequest(String menu, String price, String date, String note, String num, String rest_num, Response .Listener<String> listener){
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
@@ -21,6 +21,7 @@ public class AddMenuRequest extends StringRequest {
         map.put("date",date);
         map.put("note",note);
         map.put("num",num);
+        map.put("rest_num",rest_num);
     }
 
     @Override
