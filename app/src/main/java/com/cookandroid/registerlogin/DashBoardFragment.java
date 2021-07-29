@@ -64,7 +64,7 @@ public class DashBoardFragment extends Fragment {
     private Button btn_home;
 
 
-    private static String input_number = "-1";
+    private static String input_number = "1";
     private String restaurant_number;
 
     public DashBoardFragment() {}

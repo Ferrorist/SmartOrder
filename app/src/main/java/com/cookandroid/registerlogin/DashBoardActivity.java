@@ -31,14 +31,14 @@ public class DashBoardActivity extends AppCompatActivity {
         viewpager = findViewById(R.id.ViewPager);
         tabLayout = findViewById(R.id.tabLayout);
 
-        fragmentList.add(RestFragment.newInstance("6", "")); // dummy1
-        fragmentList.add(RestFragment.newInstance("1", userID));
-        fragmentList.add(RestFragment.newInstance("2", userID));
-        fragmentList.add(RestFragment.newInstance("3", userID));
-        fragmentList.add(RestFragment.newInstance("4", userID));
-        fragmentList.add(RestFragment.newInstance("5", userID));
-        fragmentList.add(RestFragment.newInstance("6", userID));
-        fragmentList.add(RestFragment.newInstance("1", "")); // dummy2
+        fragmentList.add(DashBoardFragment.newInstance("6")); // dummy1
+        fragmentList.add(DashBoardFragment.newInstance("1"));
+        fragmentList.add(DashBoardFragment.newInstance("2"));
+        fragmentList.add(DashBoardFragment.newInstance("3"));
+        fragmentList.add(DashBoardFragment.newInstance("4"));
+        fragmentList.add(DashBoardFragment.newInstance("5"));
+        fragmentList.add(DashBoardFragment.newInstance("6"));
+        fragmentList.add(DashBoardFragment.newInstance("1")); // dummy2
 
         viewpager.setAdapter(new FragmentStateAdapter(this) {
             @NonNull

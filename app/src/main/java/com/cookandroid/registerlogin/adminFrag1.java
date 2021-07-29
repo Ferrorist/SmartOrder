@@ -34,6 +34,13 @@ public class adminFrag1 extends Fragment {
         addmenu_button = view.findViewById(R.id.btn_addmenu);
         reader_button = view.findViewById(R.id.btn_QRreader);
 
+        dashborad_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), DashBoardActivity.class);
+                startActivity(intent);
+            }
+        });
 
         addmenu_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +49,14 @@ public class adminFrag1 extends Fragment {
                 startActivity(intent);
             }
         });
+
+        reader_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         return view;
     }
 }
