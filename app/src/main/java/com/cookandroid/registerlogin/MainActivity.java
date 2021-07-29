@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
          frag2.setArguments(bundle);
          frag3.setArguments(bundle);
          adminFrag.setArguments(bundle);
+
     }
     //프레그먼트 교체가 일어나는 실행문
     private void setFrag(int n){

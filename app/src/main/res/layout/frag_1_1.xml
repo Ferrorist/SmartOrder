@@ -14,17 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.87">
-        <!--
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:paddingLeft="15dp"
             android:src="@drawable/flash21_logo"/>
-            -->
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"/>
+            android:layout_weight="1"/>
         <ImageButton
             android:paddingRight="10dp"
             android:id="@+id/button_logout"
