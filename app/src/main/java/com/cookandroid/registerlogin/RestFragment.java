@@ -130,7 +130,7 @@ public class RestFragment extends Fragment {
                     RequestQueue queue = Volley.newRequestQueue(getContext());
                     queue.add(menuRequest);
 
-                    Count1Request countRequest = new Count1Request(menu,time, responseListener);
+                    Count1Request countRequest = new Count1Request(menu,time, responseListener);    //  새로운 Request와 php 파일 필요.
                     RequestQueue queue1 = Volley.newRequestQueue(getContext());
                     queue1.add(countRequest);
                 }
@@ -176,7 +176,7 @@ public class RestFragment extends Fragment {
     private void Execute() {
         if(!user_ID.equals("")) {
             GetData task = new GetData();
-            php_address = "http://thee153.dothome.co.kr/MenuList" + restaurant_number + ".php";
+            php_address = "http://thee153.dothome.co.kr/MenuList" + restaurant_number + ".php"; //  개선하면 좋을듯.
             task.execute(php_address);
         }
     }

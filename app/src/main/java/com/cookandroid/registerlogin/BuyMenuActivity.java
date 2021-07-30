@@ -16,7 +16,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class testActivity extends AppCompatActivity {
+public class BuyMenuActivity extends AppCompatActivity {
     private List<Fragment> fragmentList = new ArrayList<>();
     private ViewPager2 viewpager;
     private TabLayout tabLayout;

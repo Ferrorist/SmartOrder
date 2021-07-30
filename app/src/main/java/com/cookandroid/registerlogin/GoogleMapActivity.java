@@ -3,9 +3,6 @@ package com.cookandroid.registerlogin;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-
-
-
 public class GoogleMapActivity extends AppCompatActivity {
 
     @Override

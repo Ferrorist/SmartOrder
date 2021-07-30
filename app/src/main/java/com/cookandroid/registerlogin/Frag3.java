@@ -13,8 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class Frag3 extends Fragment {
-
-
         private View view;
         private TextView tv_id,tv_name,tv_Num,tv_Email;
         private Button btn_emailch,btn_passch,btn_deleteID;
@@ -22,21 +20,12 @@ public class Frag3 extends Fragment {
         @Nullable
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//            view = inflater.inflate(R.layout.activity_userinfo, container,false);
             view = inflater.inflate(R.layout.activity_userinfo, container, false);
-
-//            tv_id = view.findViewById(R.id.tv_id);
-//            tv_name = view.findViewById(R.id.tv_name);
-//            tv_Num = view.findViewById(R.id.tv_Num);
-//            tv_Email = view.findViewById(R.id.tv_Email);
 
             tv_id = view.findViewById(R.id.text_infoID);
             tv_name = view.findViewById(R.id.text_infoName);
             tv_Num = view.findViewById(R.id.text_infoNumber);
             tv_Email = view.findViewById(R.id.text_infoEmail);
-
-
-
 
             Bundle bundle = getArguments();
             String userID = bundle.getString("userID");
@@ -75,7 +64,6 @@ public class Frag3 extends Fragment {
             }
         });
 
-//        btn_passch = view.findViewById(R.id.btn_passch);
         btn_passch = view.findViewById(R.id.button_changePass);
         btn_passch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,7 +89,6 @@ public class Frag3 extends Fragment {
         });
 
 
-//        btn_emailch = view.findViewById(R.id.btn_emailch);
         btn_emailch = view.findViewById(R.id.button_changeEmail);
         btn_emailch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,7 +112,6 @@ public class Frag3 extends Fragment {
                 startActivity(intent1);
             }
         });
-
 
         return view;
     }

@@ -13,7 +13,6 @@ import android.widget.ImageView;
 public class QrActivity extends AppCompatActivity {
 
     private ImageView imageView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

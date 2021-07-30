@@ -53,7 +53,8 @@ public class adminFrag1 extends Fragment {
         reader_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getActivity(), QrReader.class);
+                startActivity(intent);
             }
         });
 

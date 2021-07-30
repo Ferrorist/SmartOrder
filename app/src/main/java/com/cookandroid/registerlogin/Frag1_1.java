@@ -51,7 +51,7 @@ public class Frag1_1 extends Fragment {
                 String userEmail = bundle.getString("userEmail");
                 String userTicket = bundle.getString("userTicket");
 
-                Intent intent1 = new Intent(getActivity(), testActivity.class);
+                Intent intent1 = new Intent(getActivity(), BuyMenuActivity.class);
                 intent1.putExtra("userID",userID);
                 intent1.putExtra("userPass",userPass);
                 intent1.putExtra("userName",userName);
