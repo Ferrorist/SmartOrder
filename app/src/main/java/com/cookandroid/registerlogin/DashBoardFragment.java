@@ -59,6 +59,7 @@ public class DashBoardFragment extends Fragment {
 
     private static String input_number = "1";
     private static String restaurant_number;
+    ListAdapter adapter;
 
     public DashBoardFragment() {}
 
@@ -107,12 +108,11 @@ public class DashBoardFragment extends Fragment {
     }
 
     void setListAdapter() {
-        ListAdapter adapter = new SimpleAdapter(
+        mlistView.setAdapter(new SimpleAdapter(
                 getContext(), mArrayList, R.layout.item_list1,
                 new String[]{TAG_ID, TAG_NAME, TAG_ADDRESS},
                 new int[]{R.id.textView_list_id, R.id.textView_list_name, R.id.textView_list_address}
-        );
-        mlistView.setAdapter(adapter);
+        ));
     }
 
     public void LookData() {

@@ -21,12 +21,11 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2021-07-30 (금)"
+                android:text="20XX-XX-XX (X)"
+                android:gravity="center"
                 android:paddingRight="20dp"
                 android:textSize="36sp"/>
-
     </LinearLayout>
-
 
     <ListView
             android:id="@+id/list"
