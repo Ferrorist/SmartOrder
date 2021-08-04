@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BuyMenuActivity extends AppCompatActivity {
-    private List<Fragment> fragmentList = new ArrayList<>();
+    private List<RestFragment> fragmentList = new ArrayList<>();
     private ViewPager2 viewpager;
     private TabLayout tabLayout;
     private String userID;
