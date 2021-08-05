@@ -4,10 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,7 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class QrReader extends AppCompatActivity {
-    Button btnScan, btnPrint;
+    ImageButton btnScan, btnPrint;
     TextView tvTest;
     ImageView ivTest;
     static String string;
@@ -35,16 +32,16 @@ public class QrReader extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reader);
 
-        tvTest = (TextView)findViewById(R.id.textview_test);
-        ivTest = (ImageView)findViewById(R.id.imageview_test);
-        btnScan = (Button)findViewById(R.id.button_scan);
+        tvTest = findViewById(R.id.textview_test);
+        ivTest = findViewById(R.id.imageview_test);
+        btnScan = findViewById(R.id.button_scan);
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new IntentIntegrator(QrReader.this).initiateScan();
             }
         });
-        btnPrint = (Button)findViewById(R.id.button_print);
+        btnPrint =  findViewById(R.id.button_print);
         btnPrint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

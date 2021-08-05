@@ -88,10 +88,10 @@ public class RestFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_restaurant, container, false);
-        mlistView = (ListView) view.findViewById(R.id.listView_main_list);
-        rest_name = (TextView) view.findViewById(R.id.restaurant_name);
-        menuname = (TextView) view.findViewById(R.id.menu_name);
-        pricetext = (TextView) view.findViewById(R.id.price_text);
+        mlistView = view.findViewById(R.id.listView_main_list);
+        rest_name = view.findViewById(R.id.restaurant_name);
+        menuname = view.findViewById(R.id.menu_name);
+        pricetext = view.findViewById(R.id.price_text);
         btn_buy = view.findViewById(R.id.btn_buy);
         btn_buy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,7 +130,7 @@ public class RestFragment extends Fragment {
                     RequestQueue queue = Volley.newRequestQueue(getContext());
                     queue.add(menuRequest);
 
-                    Count1Request countRequest = new Count1Request(menu,time, responseListener);    //  새로운 Request와 php 파일 필요.
+                    CountRequest countRequest = new CountRequest(menu,time,restaurant_number,responseListener);    //  새로운 Request와 php 파일 필요.
                     RequestQueue queue1 = Volley.newRequestQueue(getContext());
                     queue1.add(countRequest);
                 }

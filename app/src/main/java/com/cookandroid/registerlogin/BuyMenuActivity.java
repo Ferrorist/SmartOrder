@@ -1,4 +1,4 @@
-package com.cookandroid.registerlogin;
+  package com.cookandroid.registerlogin;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +26,7 @@ public class BuyMenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test2);
+
         Intent intent = getIntent();
         userID = intent.getStringExtra("userID");
         initView();

@@ -1,29 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+             android:gravity="center"
+              android:orientation="vertical">
+    <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-    <Button
-        android:id="@+id/button_scan"
-        android:text="SCAN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    </TableRow>
+    <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5">
+        <ImageButton
+                android:id="@+id/button_scan"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/ic_scan_150"
+                android:background="#C5F3C5"/>
+        <ImageButton
+                android:id="@+id/button_print"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/ic_print_150"
+                android:background="#B0A0EAEA"/>
+    </TableRow>
+    <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+        <TextView
+                android:id="@+id/textview_test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-    <Button
-            android:id="@+id/button_print"
-            android:text="PRINT"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/textview_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <ImageView
-        android:id="@+id/imageview_test"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-</LinearLayout>
+        <ImageView
+                android:id="@+id/imageview_test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+    </TableRow>
+</TableLayout>
