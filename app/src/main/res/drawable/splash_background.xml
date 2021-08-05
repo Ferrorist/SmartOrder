@@ -2,11 +2,12 @@
 <layer-list
         xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
-        <color android:color="#C7F1C7" />
+        <color android:color="@color/white"/>
+    <!--    <color android:color="#C7F1C7" /> -->
     </item>
     <item>
         <bitmap
-                android:src="@drawable/smartorder_logo"
+                android:src="@drawable/flash21_logo"
                 android:gravity="center"/>
     </item>
 </layer-list>

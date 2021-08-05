@@ -20,7 +20,7 @@ public class AdminMainFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.admin_main_frag,container,false);
+        View view = inflater.inflate(R.layout.fragment_admin_main,container,false);
 
         logout_button = view.findViewById(R.id.button_logout);
         logout_button.setOnClickListener(new View.OnClickListener() {
