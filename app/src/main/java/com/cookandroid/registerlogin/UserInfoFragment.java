@@ -12,11 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class Frag3 extends Fragment {
+public class UserInfoFragment extends Fragment {
         private View view;
         private TextView tv_id,tv_name,tv_Num,tv_Email;
         private Button btn_emailch,btn_passch,btn_deleteID;
-
+        String userID, userPass, userName, userNum, userEmail, loginmode, userTicket;
         @Nullable
         @Override
         public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -28,11 +28,13 @@ public class Frag3 extends Fragment {
             tv_Email = view.findViewById(R.id.text_infoEmail);
 
             Bundle bundle = getArguments();
-            String userID = bundle.getString("userID");
-            String userPass = bundle.getString("userPass");
-            String userName = bundle.getString("userName");
-            String userNum = bundle.getString("userNum");
-            String userEmail = bundle.getString("userEmail");
+            userID = bundle.getString("userID");
+            userPass = bundle.getString("userPass");
+            userName = bundle.getString("userName");
+            userNum = bundle.getString("userNum");
+            userEmail = bundle.getString("userEmail");
+            userTicket = bundle.getString("userTicket");
+            loginmode = bundle.getString("loginmode");
 
         tv_id.setText(userID);
         tv_name.setText(userName);
@@ -44,14 +46,6 @@ public class Frag3 extends Fragment {
         btn_deleteID.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Bundle bundle = getArguments();
-                String userID = bundle.getString("userID");
-                String userPass = bundle.getString("userPass");
-                String userName = bundle.getString("userName");
-                String userNum = bundle.getString("userNum");
-                String userEmail = bundle.getString("userEmail");
-                String userTicket = bundle.getString("userTicket");
 
                 Intent intent1 = new Intent(getActivity(), DeleteIdActivity.class);
                 intent1.putExtra("userID",userID);
@@ -69,14 +63,6 @@ public class Frag3 extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Bundle bundle = getArguments();
-                String userID = bundle.getString("userID");
-                String userPass = bundle.getString("userPass");
-                String userName = bundle.getString("userName");
-                String userNum = bundle.getString("userNum");
-                String userEmail = bundle.getString("userEmail");
-                String userTicket = bundle.getString("userTicket");
-
                 Intent intent1 = new Intent(getActivity(), ChangePassActivity.class);
                 intent1.putExtra("userID",userID);
                 intent1.putExtra("userPass",userPass);
@@ -84,6 +70,7 @@ public class Frag3 extends Fragment {
                 intent1.putExtra("userNum",userNum);
                 intent1.putExtra("userEmail",userEmail);
                 intent1.putExtra("userTicket", userTicket);
+                intent1.putExtra("loginmode",loginmode);
                 startActivity(intent1);
             }
         });
@@ -94,14 +81,6 @@ public class Frag3 extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Bundle bundle = getArguments();
-                String userID = bundle.getString("userID");
-                String userPass = bundle.getString("userPass");
-                String userName = bundle.getString("userName");
-                String userNum = bundle.getString("userNum");
-                String userEmail = bundle.getString("userEmail");
-                String userTicket = bundle.getString("userTicket");
-
                 Intent intent1 = new Intent(getActivity(), ChangeEmailActivity.class);
                 intent1.putExtra("userID",userID);
                 intent1.putExtra("userPass",userPass);
@@ -109,10 +88,16 @@ public class Frag3 extends Fragment {
                 intent1.putExtra("userNum",userNum);
                 intent1.putExtra("userEmail",userEmail);
                 intent1.putExtra("userTicket", userTicket);
+                intent1.putExtra("loginmode",loginmode);
                 startActivity(intent1);
             }
         });
 
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

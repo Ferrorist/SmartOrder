@@ -11,22 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class Frag1_1 extends Fragment {
+public class ClientMainFragment extends Fragment {
 
     private View view;
     private ImageButton btn_rest,btn_map,btn_ticket,btn_list;
 
-    String [] data1 = new String[50];
-    String [] data2 = new String[50];
-    String [] data3 = new String[50];
-    String [] data4 = new String[50];
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.frag_1_1, container,false);
+        view = inflater.inflate(R.layout.fragment_main, container,false);
 
-        final ImageButton btn_image = (ImageButton)view.findViewById(R.id.button_logout);
+        final ImageButton btn_image = view.findViewById(R.id.button_logout);
         btn_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -34,11 +29,10 @@ public class Frag1_1 extends Fragment {
             }
         });
 
-        btn_rest = (ImageButton)view.findViewById(R.id.button_rest);
-        btn_map = (ImageButton)view.findViewById(R.id.button_map);
-        btn_ticket = (ImageButton) view.findViewById(R.id.button_ticket);
-        btn_list = (ImageButton) view.findViewById(R.id.button_uselist);
-        final ImageButton btn_res1 = (ImageButton)view.findViewById(R.id.button_rest1);
+        btn_rest    =   view.findViewById(R.id.button_rest);
+        btn_map     =   view.findViewById(R.id.button_map);
+        btn_ticket  =   view.findViewById(R.id.button_ticket);
+        btn_list    =   view.findViewById(R.id.button_uselist);
 
         btn_rest.setOnClickListener(new View.OnClickListener() {
             @Override

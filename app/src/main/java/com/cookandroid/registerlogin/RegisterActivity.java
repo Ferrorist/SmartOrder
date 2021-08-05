@@ -1,5 +1,8 @@
 package com.cookandroid.registerlogin;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Patterns;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,6 +19,8 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -39,7 +44,6 @@ public class RegisterActivity extends AppCompatActivity {
         et_name = findViewById(R.id.et_name);
         et_num = findViewById(R.id.et_num);
         et_email = findViewById(R.id.et_email);
-
 
         btn_ValidateID = findViewById(R.id.btn_ValidateID);
         btn_ValidateID.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                String UserEmail = et_email.getText().toString();
+                String UserEmail = et_email.getText().toString().trim();
                 if (validate2) {
                     return; //검증 완료
                 }
@@ -110,11 +114,17 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
+                else if(!Patterns.EMAIL_ADDRESS.matcher(UserEmail).matches()){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+                    dialog2 = builder.setMessage("이메일 형식이 아닙니다.").setPositiveButton("확인", null).create();
+                    dialog2.show();
+                    return;
+                }
+
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
-
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
 
@@ -140,8 +150,8 @@ public class RegisterActivity extends AppCompatActivity {
                 queue.add(validateRequest);
             }
         });
-        //회원가입 버튼 클릭 시 수행
 
+        //회원가입 버튼 클릭 시 수행
         btn_register = findViewById(R.id.btn_register);
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override

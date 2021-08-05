@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class adminFrag1 extends Fragment {
+public class AdminMainFragment extends Fragment {
     ImageButton dashborad_button, addmenu_button, reader_button, logout_button;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

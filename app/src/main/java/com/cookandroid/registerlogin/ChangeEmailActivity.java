@@ -1,5 +1,6 @@
 package com.cookandroid.registerlogin;
 
+import android.util.Patterns;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -48,6 +49,7 @@ public class ChangeEmailActivity extends AppCompatActivity {
                 String userName = intent.getStringExtra("userName");
                 String userNum = intent.getStringExtra("userNum");
                 String userEmail = et_new.getText().toString();
+                String loginmode = intent.getStringExtra("loginmode");
 
                 if(validate2 != true)
                 {
@@ -62,41 +64,17 @@ public class ChangeEmailActivity extends AppCompatActivity {
                                 boolean success = jsonResponse.getBoolean("success");
                                 if (success) {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(ChangeEmailActivity.this);
-
                                     validate = true; //검증 완료
-
-                                    Intent intent = getIntent();
-                                    String userID = intent.getStringExtra("userID");
-                                    String userPass = intent.getStringExtra("userPass");
-                                    String userName = intent.getStringExtra("userName");
-                                    String userEmail = et_new.getText().toString();
-                                    String userNum = intent.getStringExtra("userNum");
-                                    String userTicket = intent.getStringExtra("userTicket");
-
-                                    new Handler().postDelayed(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Intent intent = getIntent();
-                                            String userID = intent.getStringExtra("userID");
-                                            String userPass = intent.getStringExtra("userPass");
-                                            String userName = intent.getStringExtra("userName");
-                                            String userEmail = et_new.getText().toString();
-                                            String userNum = intent.getStringExtra("userNum");
-                                            String userTicket = intent.getStringExtra("userTicket");
-
-                                            Intent intent1 = new Intent(ChangeEmailActivity.this, MainActivity.class);
-                                            intent1.putExtra("userID",userID);
-                                            intent1.putExtra("userPass",userPass);
-                                            intent1.putExtra("userName",userName);
-                                            intent1.putExtra("userNum",userNum);
-                                            intent1.putExtra("userEmail",userEmail);
-                                            intent1.putExtra("userTicket", userTicket);
-                                            startActivity(intent1);
-                                        }
-                                    }, 1500);
 
                                     dialog = builder.setMessage("변경 성공!").setPositiveButton("확인", null).create();
                                     dialog.show();
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            dialog.dismiss();
+                                            finish();
+                                        }
+                                    }, 1500);
                                 } else {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(ChangeEmailActivity.this);
                                     dialog = builder.setMessage("변경 실패..").setNegativeButton("확인", null).create();
@@ -107,9 +85,9 @@ public class ChangeEmailActivity extends AppCompatActivity {
                             }
                         }
                     };
-                    ChangeEmailRequest changeuserinfo = new ChangeEmailRequest(userID, userEmail, userName, Integer.parseInt(userNum), responseListener);
+                    ChangeEmailRequest ChangeUserInfo = new ChangeEmailRequest(userID, userEmail, userName, Integer.parseInt(userNum), responseListener);
                     RequestQueue queue = Volley.newRequestQueue(ChangeEmailActivity.this);
-                    queue.add(changeuserinfo);
+                    queue.add(ChangeUserInfo);
                 }
             }
         });
@@ -125,10 +103,8 @@ public class ChangeEmailActivity extends AppCompatActivity {
 
         btn_verify = findViewById(R.id.btn_verify);
         btn_verify.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
-
                 String UserEmail = et_new.getText().toString();
                 if (validate2) {
                     return; //검증 완료
@@ -140,11 +116,17 @@ public class ChangeEmailActivity extends AppCompatActivity {
                     return;
                 }
 
+                else if(!Patterns.EMAIL_ADDRESS.matcher(UserEmail).matches()){ // 이메일 형식이 아닌 경우
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ChangeEmailActivity.this);
+                    dialog2 = builder.setMessage("이메일 형식이 아닙니다.").setPositiveButton("확인", null).create();
+                    dialog2.show();
+                    return;
+                }
+
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
-
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
 
@@ -154,7 +136,6 @@ public class ChangeEmailActivity extends AppCompatActivity {
                                 dialog2.show();
                                 et_new.setEnabled(false); //아이디값 고정
                                 validate2 = true; //검증 완료
-
                             }
                             else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(ChangeEmailActivity.this);

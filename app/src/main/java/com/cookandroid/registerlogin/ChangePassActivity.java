@@ -50,6 +50,7 @@ public class ChangePassActivity extends AppCompatActivity {
                 String userNum = intent.getStringExtra("userNum");
                 String userEmail = intent.getStringExtra("userEmail");
                 String userTicket = intent.getStringExtra("userTicket");
+                String Loginmode = intent.getStringExtra("loginmode");
                 String ctpass = et_ctpass.getText().toString();
                 String newpass1 = et_newpass1.getText().toString();
                 String newpass2 = et_newpass2.getText().toString();
@@ -62,12 +63,9 @@ public class ChangePassActivity extends AppCompatActivity {
                     return;
                 }
                 else if(newpass1.equals(newpass2)) {
-
                     Response.Listener<String> responseListener =new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-
-
                             try {
                                 JSONObject jasonObject = new JSONObject(response);
                                 boolean success = jasonObject.getBoolean("success");
@@ -77,6 +75,7 @@ public class ChangePassActivity extends AppCompatActivity {
                                 String userNum = intent.getStringExtra("userNum");
                                 String userEmail = intent.getStringExtra("userEmail");
                                 String userTicket = intent.getStringExtra("userTicket");
+                                String Loginmode = intent.getStringExtra("loginmode");
                                 String ctpass = et_ctpass.getText().toString();
                                 String newpass1 = et_newpass1.getText().toString();
                                 String newpass2 = et_newpass2.getText().toString();
@@ -92,48 +91,23 @@ public class ChangePassActivity extends AppCompatActivity {
                                                     boolean success = jsonResponse.getBoolean("success");
                                                     if (success) {
                                                         AlertDialog.Builder builder = new AlertDialog.Builder(ChangePassActivity.this);
-
                                                         validate = true; //검증 완료
-
-                                                        Intent intent = getIntent();
-                                                        String userID = intent.getStringExtra("userID");
-                                                        String userPass = et_newpass1.getText().toString();
-                                                        String userName = intent.getStringExtra("userName");
-                                                        String userEmail = intent.getStringExtra("userEmail");
-                                                        String userNum = intent.getStringExtra("userNum");
-                                                        String userTicket = intent.getStringExtra("userTicket");
-
-
-                                                        new Handler().postDelayed(new Runnable() {
-                                                            @Override
-                                                            public void run() {
-                                                                Intent intent = getIntent();
-                                                                String userID = intent.getStringExtra("userID");
-                                                                String userPass = et_newpass1.getText().toString();
-                                                                String userName = intent.getStringExtra("userName");
-                                                                String userEmail = intent.getStringExtra("userEmail");
-                                                                String userNum = intent.getStringExtra("userNum");
-                                                                String userTicket = intent.getStringExtra("userTicket");
-
-                                                                Intent intent1 = new Intent(ChangePassActivity.this, MainActivity.class);
-                                                                intent1.putExtra("userID",userID);
-                                                                intent1.putExtra("userPass",userPass);
-                                                                intent1.putExtra("userName",userName);
-                                                                intent1.putExtra("userNum",userNum);
-                                                                intent1.putExtra("userEmail",userEmail);
-                                                                intent1.putExtra("userTicket", userTicket);
-                                                                startActivity(intent1);
-                                                            }
-                                                        }, 1500);
 
                                                         dialog = builder.setMessage("변경 성공!").setPositiveButton("확인", null).create();
                                                         dialog.show();
 
-
+                                                        new Handler().postDelayed(new Runnable() {
+                                                            @Override
+                                                            public void run() {
+                                                                dialog.dismiss();
+                                                                finish();
+                                                            }
+                                                        }, 1500);
                                                     } else {
                                                         AlertDialog.Builder builder = new AlertDialog.Builder(ChangePassActivity.this);
                                                         dialog = builder.setMessage("변경 실패..").setNegativeButton("확인", null).create();
                                                         dialog.show();
+                                                        dialog.dismiss();
                                                     }
                                                 } catch (JSONException e) {
                                                     e.printStackTrace();
@@ -189,6 +163,7 @@ public class ChangePassActivity extends AppCompatActivity {
         String userEmail = intent.getStringExtra("userEmail");
         String userNum = intent.getStringExtra("userNum");
         String userTicket = intent.getStringExtra("userTicket");
+        String Loginmode = intent.getStringExtra("loginmode");
 
     }
 }

@@ -42,7 +42,6 @@ public class DeleteIdActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
-                String userID = intent.getStringExtra("userID");
                 String userPass = intent.getStringExtra("userPassword");
                 String userName = intent.getStringExtra("userName");
                 String userNum = intent.getStringExtra("userNum");
@@ -58,7 +57,6 @@ public class DeleteIdActivity extends AppCompatActivity {
                     Response.Listener<String> responseListener =new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-
 
                             try {
                                 JSONObject jasonObject = new JSONObject(response);
@@ -83,7 +81,6 @@ public class DeleteIdActivity extends AppCompatActivity {
                                         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                                             @Override
 
-
                                             public void onClick(DialogInterface dialog, int which) {
                                                 //"YES" Button Click
                                                 Intent intent = getIntent();
@@ -98,32 +95,18 @@ public class DeleteIdActivity extends AppCompatActivity {
                                                             boolean success = jsonResponse.getBoolean("success");
                                                             if (success) {
                                                                 AlertDialog.Builder builder = new AlertDialog.Builder(DeleteIdActivity.this);
-
                                                                 validate = true;
-
-                                                                Intent intent = getIntent();
-                                                                String userID = intent.getStringExtra("userID");
-                                                                String userPass = intent.getStringExtra("userPass");
-                                                                String userName = intent.getStringExtra("userName");
-
-                                                                new Handler().postDelayed(new Runnable() {
+                                                                builder.setMessage("회원탈퇴 완료. 앱을 다시 시작합니다.").setPositiveButton("확인", new DialogInterface.OnClickListener() {
                                                                     @Override
-                                                                    public void run() {
-                                                                        Intent intent = getIntent();
-                                                                        String userID = intent.getStringExtra("userID");
-                                                                        String userPass = intent.getStringExtra("userPass");
-                                                                        String userName = intent.getStringExtra("userName");
-
-                                                                        Intent intent1 = new Intent(DeleteIdActivity.this, LoginFragment.class);
-                                                                        startActivity(intent1);
+                                                                    public void onClick(DialogInterface dialog, int which) {
+                                                                        Intent intent = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
+                                                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                                        startActivity(intent);
                                                                     }
-                                                                }, 1500);
-
-                                                                Toast.makeText(getApplicationContext(),"회원탈퇴에 성공하였습니다.",Toast.LENGTH_SHORT).show();
-
-
+                                                                }).show();
                                                             } else {
-                                                                Toast.makeText(getApplicationContext(),"회원탈퇴에 실패하였습니다.",Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(getApplicationContext(), "회원탈퇴에 실패하였습니다.", Toast.LENGTH_SHORT).show();
                                                             }
                                                         } catch (JSONException e) {
                                                             e.printStackTrace();
@@ -133,12 +116,8 @@ public class DeleteIdActivity extends AppCompatActivity {
                                                 DeleteIdRequest deleteid = new DeleteIdRequest(userID, responseListener);
                                                 RequestQueue queue = Volley.newRequestQueue(DeleteIdActivity.this);
                                                 queue.add(deleteid);
-
-
                                             }
-                                        });
-
-                                        builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {       //취소 버튼을 생성하고 클릭시 동작을 구현합니다.
+                                        }).setNegativeButton("NO", new DialogInterface.OnClickListener() {       //취소 버튼을 생성하고 클릭시 동작을 구현합니다.
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                                 Intent intent = getIntent();
@@ -150,15 +129,16 @@ public class DeleteIdActivity extends AppCompatActivity {
                                                 String userTicket = intent.getStringExtra("userTicket");
 
                                                 Intent intent1 = new Intent(DeleteIdActivity.this, DeleteIdActivity.class);
-                                                intent1.putExtra("userID",userID);
-                                                intent1.putExtra("userPass",userPass);
-                                                intent1.putExtra("userName",userName);
-                                                intent1.putExtra("userNum",userNum);
-                                                intent1.putExtra("userEmail",userEmail);
+                                                intent1.putExtra("userID", userID);
+                                                intent1.putExtra("userPass", userPass);
+                                                intent1.putExtra("userName", userName);
+                                                intent1.putExtra("userNum", userNum);
+                                                intent1.putExtra("userEmail", userEmail);
                                                 intent1.putExtra("userTicket", userTicket);
                                                 startActivity(intent1);
                                             }
                                         });
+
                                         AlertDialog alert = builder.create(); //빌더를 이용하여 AlertDialog객체를 생성합니다.
                                         alert.show();
                                     }
@@ -176,8 +156,6 @@ public class DeleteIdActivity extends AppCompatActivity {
                                 e.printStackTrace();
                                 Toast.makeText(getApplicationContext(),"1",Toast.LENGTH_SHORT).show();
                             }
-
-
                         }
                     };
                     FindIdRequest findIdrequest = new FindIdRequest(userName, userEmail,Integer.parseInt(userNum), responseListener);
@@ -188,7 +166,6 @@ public class DeleteIdActivity extends AppCompatActivity {
                 {
                     Toast.makeText(getApplicationContext(),"입력한 두 비밀번호가 일치하지 않습니다.",Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 

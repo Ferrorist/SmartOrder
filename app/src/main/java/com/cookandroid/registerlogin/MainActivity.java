@@ -20,12 +20,10 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private FragmentManager fm;
     private FragmentTransaction ft;
-    private adminFrag1 adminFrag;
-    private Frag1 frag1;
-    private Frag1_1 frag1_1;
-    private Frag2 frag2;
-    private Frag3 frag3;
-    private action_web_frag frag4;
+    private AdminMainFragment AdminFrag;
+    private ClientMainFragment MainFrag;
+    private UserInfoFragment InfoFrag;
+    private WebFragment frag4;
     String userID, userPass, userName, userEmail, userNum, userTicket, login_mode;
      @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
          userNum = intent.getStringExtra("userNum");
          userTicket = intent.getStringExtra("userTicket");
          login_mode = intent.getStringExtra("loginMode");
+
+         if(login_mode == "logout") finish();
 
          bottomNavigationView =findViewById(R.id.bottomNavi);
          bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -59,11 +59,10 @@ public class MainActivity extends AppCompatActivity {
                  return true;
              }
          });
-         adminFrag = new adminFrag1();
-         frag1 = new Frag1();
-         frag2 = new Frag2();
-         frag3 = new Frag3();
-         frag4 = new action_web_frag();
+         AdminFrag = new AdminMainFragment();
+         MainFrag = new ClientMainFragment();
+         InfoFrag = new UserInfoFragment();
+         frag4 = new WebFragment();
          setFrag(0);//첫프래그먼트 화면 지정
 
          Bundle bundle = new Bundle();
@@ -73,10 +72,10 @@ public class MainActivity extends AppCompatActivity {
          bundle.putString("userEmail",userEmail);
          bundle.putString("userNum",userNum);
          bundle.putString("userTicket", userTicket);
-         frag1.setArguments(bundle);
-         frag2.setArguments(bundle);
-         frag3.setArguments(bundle);
-         adminFrag.setArguments(bundle);
+         bundle.putString("loginmode",login_mode);
+         MainFrag.setArguments(bundle);
+         InfoFrag.setArguments(bundle);
+         AdminFrag.setArguments(bundle);
 
     }
     //프레그먼트 교체가 일어나는 실행문
@@ -87,19 +86,22 @@ public class MainActivity extends AppCompatActivity {
              case 0:
                  switch(login_mode){
                      case "admin":
-                         ft.replace(R.id.main_frame, adminFrag);    break;
-                     case "null":
-                         ft.replace(R.id.main_frame, frag1);    break;
+                         ft.replace(R.id.main_frame, AdminFrag);    break;
+                     default:
+                         ft.replace(R.id.main_frame, MainFrag);    break;
                  }
                  ft.commit();
                  break;
              case 1:
-                 ft.replace(R.id.main_frame,frag3);
+                 ft.replace(R.id.main_frame, InfoFrag);
                  ft.commit();
                  break;
              case 2:
                  ft.replace(R.id.main_frame,frag4);
                  ft.commit();
+                 break;
+             case 3:
+                 finish();
                  break;
          }
     }

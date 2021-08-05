@@ -60,9 +60,9 @@ public class LoginFragment extends Fragment {
                 loginlogo.setImageResource(R.mipmap.loginlogo_admin);
                 arrow.setVisibility(View.VISIBLE);
                 admin_text.setVisibility(View.VISIBLE);
-                btn_register.setVisibility(View.INVISIBLE);
+                btn_register.setVisibility(View.INVISIBLE); // 회원가입 버튼 X
                 btn_register.setEnabled(false);
-                btn_findid.setVisibility(View.INVISIBLE);
+                btn_findid.setVisibility(View.INVISIBLE); // 아이디 찾기 X
                 btn_findid.setEnabled(false);
                 break;
             case "null":

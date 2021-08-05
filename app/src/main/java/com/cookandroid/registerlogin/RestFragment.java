@@ -211,9 +211,10 @@ public class RestFragment extends Fragment {
         @Override
         protected String doInBackground(String... params) {
             String serverURL = params[0];
+            HttpURLConnection httpURLConnection;
             try {
                 URL url = new URL(serverURL);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection = (HttpURLConnection) url.openConnection();
 
                 httpURLConnection.setReadTimeout(5000);
                 httpURLConnection.setConnectTimeout(5000);
@@ -241,6 +242,7 @@ public class RestFragment extends Fragment {
                 }
 
                 bufferedReader.close();
+                httpURLConnection.disconnect();
                 return sb.toString().trim();
 
 
