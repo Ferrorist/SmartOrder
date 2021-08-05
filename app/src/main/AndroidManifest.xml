@@ -40,13 +40,13 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-        <activity android:name=".SplashActivity" android:theme="@style/SplashTheme">
+        <activity android:name=".activity.SplashActivity" android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".BuyMenuActivity"/>
+        <activity android:name=".activity.BuyMenuActivity"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -60,7 +60,7 @@
                 android:value="@string/google_maps_key"/>
 
         <activity
-                android:name=".MapsActivity"
+                android:name=".activity.MapsActivity"
                 android:label="@string/title_activity_maps"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -71,27 +71,27 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <activity
-                android:name=".LoginActivity"
+                android:name=".activity.LoginActivity"
                 android:windowSoftInputMode="adjustNothing"/>
-        <activity android:name=".RegisterActivity"/>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".FindResultPage"/>
-        <activity android:name=".ChangeEmailActivity"/>
-        <activity android:name=".ChangePassActivity"/>
-        <activity android:name=".DeleteIdActivity"/>
-        <activity android:name=".QrActivity"/>
-        <activity android:name=".ClientMainFragment"/>
-        <activity android:name=".UserInfoFragment"/>
-        <activity android:name=".GoogleMapActivity"/>
-        <activity android:name=".UsedTicket"/>
-        <activity android:name=".CountRequest"/>
-        <activity android:name=".LoadActivity"/>
-        <activity android:name=".Ticket"/>
-        <activity android:name=".MenuRequest"/>
-        <activity android:name=".FindIdActivity"/>
-        <activity android:name=".Addmenu"/>
-        <activity android:name=".DashBoardActivity"/>
-        <activity android:name=".QrReader"/>
+        <activity android:name=".activity.RegisterActivity"/>
+        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.FindResultPage"/>
+        <activity android:name=".activity.ChangeEmailActivity"/>
+        <activity android:name=".activity.ChangePassActivity"/>
+        <activity android:name=".activity.DeleteIdActivity"/>
+        <activity android:name=".activity.QrActivity"/>
+        <activity android:name=".fragment.ClientMainFragment"/>
+        <activity android:name=".fragment.UserInfoFragment"/>
+        <activity android:name=".activity.GoogleMapActivity"/>
+        <activity android:name=".activity.UsedTicket"/>
+        <activity android:name=".request.CountRequest"/>
+        <activity android:name=".activity.LoadActivity"/>
+        <activity android:name=".activity.Ticket"/>
+        <activity android:name=".request.MenuRequest"/>
+        <activity android:name=".activity.FindIdActivity"/>
+        <activity android:name=".activity.Addmenu"/>
+        <activity android:name=".activity.DashBoardActivity"/>
+        <activity android:name=".activity.QrReader"/>
 
         <uses-library
                 android:name="org.apache.http.legacy"

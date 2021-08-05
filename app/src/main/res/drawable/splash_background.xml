@@ -7,7 +7,7 @@
     </item>
     <item>
         <bitmap
-                android:src="@drawable/flash21_logo"
+                android:src="@drawable/flash21_logo_70"
                 android:gravity="center"/>
     </item>
 </layer-list>
