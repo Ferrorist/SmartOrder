@@ -1,7 +1,11 @@
   package com.cookandroid.registerlogin.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,37 +17,50 @@ import com.cookandroid.registerlogin.R;
 import com.cookandroid.registerlogin.fragment.RestFragment;
 import com.google.android.material.tabs.TabLayout;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class BuyMenuActivity extends AppCompatActivity {
     private List<RestFragment> fragmentList = new ArrayList<>();
+    private static final String TAG_JSON="response";
+    private static String TAG = "phptest_MainActivity";
     private ViewPager2 viewpager;
     private TabLayout tabLayout;
     private String userID;
-    private String[] titles = {"정보센터식당", "복지관 교직원식당", "카페테리아 첨성", "GP감꽃푸드코트", "공학식당1", "공학식당2"};
+    String mJsonString;
+    // 식당 이름.
+    private List<String> testList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buymenu);
-
+        GetData task = new GetData();
+        task.execute("http://thee153.dothome.co.kr/RestList.php/");
         Intent intent = getIntent();
         userID = intent.getStringExtra("userID");
-        initView();
     }
 
     private void initView() {
         viewpager = findViewById(R.id.ViewPager);
         tabLayout = findViewById(R.id.tabLayout);
 
-        fragmentList.add(RestFragment.newInstance("6", "")); // dummy1
-        fragmentList.add(RestFragment.newInstance("1", userID));
-        fragmentList.add(RestFragment.newInstance("2", userID));
-        fragmentList.add(RestFragment.newInstance("3", userID));
-        fragmentList.add(RestFragment.newInstance("4", userID));
-        fragmentList.add(RestFragment.newInstance("5", userID));
-        fragmentList.add(RestFragment.newInstance("6", userID));
-        fragmentList.add(RestFragment.newInstance("1", "")); // dummy2
+        Log.d(TAG, "testList.size() = " + testList.size());
+        if(testList.size() > 0){
+            fragmentList.add(RestFragment.newInstance(Integer.toString(testList.size()),"",testList.get(testList.size()-1)));
+            for(int i = 1; i <= testList.size(); i++)
+                fragmentList.add(RestFragment.newInstance(Integer.toString(i), userID, testList.get(i-1)));
+            fragmentList.add(RestFragment.newInstance("1","",testList.get(0)));
+        }
 
         viewpager.setAdapter(new FragmentStateAdapter(this) {
             @NonNull
@@ -75,14 +92,15 @@ public class BuyMenuActivity extends AppCompatActivity {
             }
         });
 
-        for(int i = 0; i < 6; i++){
-            tabLayout.addTab(tabLayout.newTab().setText(titles[i]));
+        for(int i = 0; i < testList.size(); i++){
+            tabLayout.addTab(tabLayout.newTab().setText(testList.get(i)));
         }
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
+            public void onTabSelected(TabLayout.Tab tab) { // tab 선택 시 호출됨.
                 int pos = tab.getPosition();
-                viewpager.setCurrentItem(pos+1,false);
+                viewpager.setCurrentItem(pos+1,false); // 선택된 tab에 맞춰 viewpager 이동.
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
@@ -95,4 +113,88 @@ public class BuyMenuActivity extends AppCompatActivity {
         });
         viewpager.setCurrentItem(1,false);
     }
+
+
+    private class GetData extends AsyncTask<String, Void, String> {
+        String errorString = null;
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            Log.d(TAG, "response  - " + result);
+
+            if (result == null){
+                Toast.makeText(BuyMenuActivity.this,"조회할 자료가 없습니다.",Toast.LENGTH_SHORT).show();
+            }
+            else {
+                mJsonString = result;
+                ApplyList();
+                initView();
+            }
+        }
+
+
+        @Override
+        protected String doInBackground(String... params) {
+            String serverURL = params[0];
+            HttpURLConnection httpURLConnection;
+            try {
+                URL url = new URL(serverURL);
+                httpURLConnection = (HttpURLConnection) url.openConnection();
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.connect();
+                Log.d(TAG, "connect success");
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG, "response code - " + responseStatusCode);
+
+                InputStream inputStream;
+                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                }
+                else{
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+                Log.d(TAG, "success if-else");
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+                Log.d(TAG, "start while");
+                while((line = bufferedReader.readLine()) != null){
+                    sb.append(line);
+                }
+                Log.d(TAG, "finish while");
+                bufferedReader.close();
+                httpURLConnection.disconnect();
+                return sb.toString().trim();
+            } catch (Exception e) {
+                Log.d(TAG, "InsertData: Error ", e);
+                errorString = e.toString();
+                return null;
+            }
+        }
+    }
+
+    void ApplyList(){
+        Log.i("test","mJsonString = " + mJsonString);
+        if(mJsonString != null) {
+            try {
+                JSONObject jsonObject = new JSONObject(mJsonString);
+                JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+                Log.i("test", "try add List");
+                for(int i=0;i<jsonArray.length();i++){
+                    JSONObject item = jsonArray.getJSONObject(i);
+                    String name = item.getString("name");
+                    testList.add(name);
+                    Log.i("test", "success add List : " + name);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

@@ -63,8 +63,12 @@ public class RestFragment extends Fragment {
 
 
     private static String input_number = "-1";
+    private static String input_rest_name = "";
     private static String input_name = "";
+
+
     private String restaurant_number;
+    private String restaurant_name;
     private String user_ID;
 
     public RestFragment() {}
@@ -75,14 +79,16 @@ public class RestFragment extends Fragment {
         if (getArguments() != null){
             restaurant_number = getArguments().getString(input_number);
             user_ID = getArguments().getString(input_name);
+            restaurant_name = getArguments().getString(input_rest_name);
         }
     }
 
-    public static RestFragment newInstance(String param1, String param2) {
+    public static RestFragment newInstance(String param1, String param2, String param3) {
         RestFragment fragment = new RestFragment();
         Bundle args = new Bundle();
         args.putString(input_number, param1);
         args.putString(input_name, param2);
+        args.putString(input_rest_name, param3);
         fragment.setArguments(args);
         return fragment;
     }
@@ -138,23 +144,7 @@ public class RestFragment extends Fragment {
                 }
             }
         });
-
-        switch(restaurant_number){
-            case "1":
-                rest_name.setText("정보센터식당"); break;
-            case "2":
-                rest_name.setText("복지관 교직원식당"); break;
-            case "3":
-                rest_name.setText("카페테리아 첨성"); break;
-            case "4":
-                rest_name.setText("GP감꽃푸드코트"); break;
-            case "5":
-                rest_name.setText("공학식당1"); break;
-            case "6":
-                rest_name.setText("공학식당2"); break;
-            default:
-                rest_name.setText(""); break;
-        }
+        rest_name.setText(restaurant_name);
         return view;
     }
 
@@ -246,8 +236,6 @@ public class RestFragment extends Fragment {
                 bufferedReader.close();
                 httpURLConnection.disconnect();
                 return sb.toString().trim();
-
-
             } catch (Exception e) {
                 Log.d(TAG, "InsertData: Error ", e);
                 errorString = e.toString();
@@ -258,6 +246,7 @@ public class RestFragment extends Fragment {
 
     private void showResult(){
         try {
+            Log.i("test","mJsonString : " + mJsonString);
             JSONObject jsonObject = new JSONObject(mJsonString);
             JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
             Date date = new Date();

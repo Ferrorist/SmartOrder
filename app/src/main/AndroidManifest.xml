@@ -82,7 +82,6 @@
         <activity android:name=".activity.QrActivity"/>
         <activity android:name=".fragment.ClientMainFragment"/>
         <activity android:name=".fragment.UserInfoFragment"/>
-        <activity android:name=".activity.GoogleMapActivity"/>
         <activity android:name=".activity.UsedTicket"/>
         <activity android:name=".request.CountRequest"/>
         <activity android:name=".activity.LoadActivity"/>
