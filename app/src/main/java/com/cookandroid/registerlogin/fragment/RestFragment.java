@@ -168,7 +168,8 @@ public class RestFragment extends Fragment {
     private void Execute() {
         if(!user_ID.equals("")) {
             GetData task = new GetData();
-            php_address = "http://thee153.dothome.co.kr/MenuList" + restaurant_number + ".php"; //  개선하면 좋을듯.
+//            php_address = "http://thee153.dothome.co.kr/MenuList" + restaurant_number + ".php"; //  개선하면 좋을듯.
+            php_address = "http://thee153.dothome.co.kr/testMenuList.php?rest_name=" + restaurant_name;
             task.execute(php_address);
         }
     }
