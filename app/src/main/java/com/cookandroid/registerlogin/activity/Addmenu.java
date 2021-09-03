@@ -11,17 +11,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.cookandroid.registerlogin.request.AddMenuRequest;
 import com.cookandroid.registerlogin.R;
+import com.cookandroid.registerlogin.request.AddMenuRequest;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Addmenu extends AppCompatActivity {
     private AlertDialog.Builder builder;
-    private String restaurant_number="1";
     private EditText edit_name, edit_price, edit_date, edit_explain;
     private Button  button_add, button_back;
     private Spinner menu_spinner;
+    private String restaurant_name;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,7 @@ public class Addmenu extends AppCompatActivity {
         menu_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                restaurant_number = Integer.toString(position+1);
+                restaurant_name = menu_spinner.getSelectedItem().toString();
             }
 
             @Override
@@ -104,7 +105,7 @@ public class Addmenu extends AppCompatActivity {
                             }
                         }
                     };
-                    AddMenuRequest validateRequest = new AddMenuRequest(menu,price,date,note,"0",restaurant_number, responseListener);
+                    AddMenuRequest validateRequest = new AddMenuRequest(menu,price,date,note,"0",restaurant_name, responseListener);
                     RequestQueue queue = Volley.newRequestQueue(Addmenu.this);
                     queue.add(validateRequest);
                 }

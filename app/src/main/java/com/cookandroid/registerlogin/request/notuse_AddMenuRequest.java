@@ -7,12 +7,12 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddMenuRequest extends StringRequest {
+public class notuse_AddMenuRequest extends StringRequest {
     //서버 url 설정(php파일 연동)
-    static private String URL = "http://thee153.dothome.co.kr/AddMenu1.php/";
+    static private String URL = "http://thee153.dothome.co.kr/AddMenu.php/";
     private Map<String, String> map;
 
-    public AddMenuRequest(String menu, String price, String date, String note, String num, String restaurant_name, Response .Listener<String> listener){
+    public notuse_AddMenuRequest(String menu, String price, String date, String note, String num, String rest_num, Response .Listener<String> listener){
         super(Method.POST, URL, listener, null);
 
         map = new HashMap<>();
@@ -21,7 +21,7 @@ public class AddMenuRequest extends StringRequest {
         map.put("date",date);
         map.put("note",note);
         map.put("num",num);
-        map.put("restaurant_name",restaurant_name);
+        map.put("rest_num",rest_num);
     }
 
     @Override
